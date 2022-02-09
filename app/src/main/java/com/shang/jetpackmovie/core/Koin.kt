@@ -3,6 +3,7 @@ package com.shang.jetpackmovie.core
 import com.shang.jetpackmovie.activity.splash.SplashRepository
 import com.shang.jetpackmovie.activity.splash.SplashViewModel
 import com.shang.jetpackmovie.api.AuthInterceptor
+import com.shang.jetpackmovie.api.LanguageInterceptor
 import com.shang.jetpackmovie.api.MovieApi
 import com.shang.jetpackmovie.fragment.genres.GenreRepository
 import com.shang.jetpackmovie.fragment.genres.GenreViewModel
@@ -32,6 +33,7 @@ val networkModule = module {
         OkHttpClient().newBuilder()
             .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC))
             .addInterceptor(AuthInterceptor())
+            .addInterceptor(LanguageInterceptor())
             .build()
     }
 

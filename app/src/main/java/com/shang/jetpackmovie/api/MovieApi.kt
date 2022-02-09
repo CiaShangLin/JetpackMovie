@@ -14,7 +14,7 @@ import retrofit2.http.Url
 
 interface MovieApi {
 
-    @GET("genre/movie/list?language=zh-TW")
+    @GET("genre/movie/list")
     suspend fun getMovieGenres(): MovieGenreBean
 
     @GET("movie/{id}}")
@@ -25,13 +25,6 @@ interface MovieApi {
         @Query("with_genres") with_genres: String,
         @Query("page") page: Int
     ): MovieListBean
-//    language=en-US&
-//    sort_by=popularity.desc&
-//    include_adult=false&
-//    include_video=false&
-//    page=1&
-//    with_genres=53&
-//    with_watch_monetization_types=flatrate
 
 
     @GET("configuration")
