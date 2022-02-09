@@ -21,6 +21,11 @@
         <item name="BottomLayerColor">@color/black</item>
     </style>
 
+    <style name="MainBottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="itemTextColor">@drawable/main_bottom_navigation_dark_state</item>
+        <item name="itemIconTint">@drawable/main_bottom_navigation_dark_state</item>
+        <item name="android:background">@color/black_3c3c3c</item>
+    </style>
 
     <style name="MovieTabLayout" parent="Widget.MaterialComponents.TabLayout">
         <item name="tabIndicatorHeight">2dp</item>
