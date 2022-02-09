@@ -8,6 +8,8 @@ import com.shang.jetpackmovie.R
 import com.shang.jetpackmovie.bean.MovieGenreBean
 import com.shang.jetpackmovie.databinding.FragmentGenreBinding
 import com.shang.jetpackmovie.viewBinding
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class GenreFragment : Fragment(R.layout.fragment_genre) {
     companion object {
@@ -22,11 +24,16 @@ class GenreFragment : Fragment(R.layout.fragment_genre) {
     }
 
     private val mBinding by viewBinding(FragmentGenreBinding::bind)
+    private val mViewModel by viewModel<GenreViewModel>()
     private val mGenre by lazy { arguments?.getSerializable(GENRE) as MovieGenreBean.Genre? }
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        mViewModel.livedata.observe(viewLifecycleOwner,{
 
+        })
     }
 }

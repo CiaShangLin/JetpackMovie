@@ -1,10 +1,11 @@
 package com.shang.jetpackmovie.core
 
-import com.bumptech.glide.Glide
 import com.shang.jetpackmovie.activity.splash.SplashRepository
 import com.shang.jetpackmovie.activity.splash.SplashViewModel
 import com.shang.jetpackmovie.api.AuthInterceptor
 import com.shang.jetpackmovie.api.MovieApi
+import com.shang.jetpackmovie.fragment.genres.GenreRepository
+import com.shang.jetpackmovie.fragment.genres.GenreViewModel
 import com.shang.jetpackmovie.fragment.home.HomeRepository
 import com.shang.jetpackmovie.fragment.home.HomeViewModel
 import okhttp3.OkHttpClient
@@ -13,7 +14,6 @@ import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.scalars.ScalarsConverterFactory
 
 val networkModule = module {
 
@@ -28,8 +28,9 @@ val networkModule = module {
     }
 
     factory {
+
         OkHttpClient().newBuilder()
-            .addInterceptor(HttpLoggingInterceptor())
+            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC))
             .addInterceptor(AuthInterceptor())
             .build()
     }
@@ -50,9 +51,19 @@ val homeViewModelModule = module {
 
 val splashViewModelModule = module {
     factory {
-        SplashViewModel(this.androidApplication(),get())
+        SplashViewModel(this.androidApplication(), get())
     }
     single {
         SplashRepository(get())
+    }
+}
+
+val genresViewModule = module {
+    factory {
+        GenreViewModel(get())
+    }
+
+    single {
+        GenreRepository(get())
     }
 }

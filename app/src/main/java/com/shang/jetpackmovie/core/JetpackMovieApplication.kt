@@ -22,7 +22,7 @@ class JetpackMovieApplication : MultiDexApplication() {
         startKoin {
             androidLogger()
             androidContext(this@JetpackMovieApplication)
-            modules(networkModule, homeViewModelModule, splashViewModelModule)
+            modules(networkModule, homeViewModelModule, splashViewModelModule, genresViewModule)
         }
     }
 }
