@@ -12,6 +12,7 @@ import com.shang.jetpackmovie.fragment.home.HomeViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidApplication
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -43,7 +44,7 @@ val networkModule = module {
 }
 
 val homeViewModelModule = module {
-    factory {
+    viewModel {
         HomeViewModel(get())
     }
     single {
@@ -52,7 +53,7 @@ val homeViewModelModule = module {
 }
 
 val splashViewModelModule = module {
-    factory {
+    viewModel {
         SplashViewModel(this.androidApplication(), get())
     }
     single {
@@ -61,9 +62,10 @@ val splashViewModelModule = module {
 }
 
 val genresViewModule = module {
-    factory {
-        GenreViewModel(get())
+    viewModel {parameters->
+        GenreViewModel(parameters.get(),get())
     }
+
 
     single {
         GenreRepository(get())
