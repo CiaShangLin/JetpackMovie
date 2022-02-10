@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.shang.jetpackmovie.MovieRefreshHeader
 import com.shang.jetpackmovie.R
 import com.shang.jetpackmovie.bean.MovieGenreBean
 import com.shang.jetpackmovie.databinding.FragmentGenreBinding
@@ -26,7 +27,7 @@ class GenreFragment : Fragment(R.layout.fragment_genre) {
 
     private val mBinding by viewBinding(FragmentGenreBinding::bind)
     private val mGenre by lazy { arguments?.getSerializable(GENRE) as MovieGenreBean.Genre? }
-    private val mViewModel by viewModel<GenreViewModel>(){ parametersOf(mGenre)}
+    private val mViewModel by viewModel<GenreViewModel>{ parametersOf(mGenre)}
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -35,7 +36,5 @@ class GenreFragment : Fragment(R.layout.fragment_genre) {
         mViewModel.genreLiveData.observe(viewLifecycleOwner,{
 
         })
-
-        mBinding.smartRefresh
     }
 }

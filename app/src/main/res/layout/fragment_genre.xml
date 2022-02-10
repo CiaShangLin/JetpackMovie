@@ -14,11 +14,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.scwang.smart.refresh.header.ClassicsHeader
+        <com.shang.jetpackmovie.MovieRefreshHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        </com.scwang.smart.refresh.header.ClassicsHeader>
+        </com.shang.jetpackmovie.MovieRefreshHeader>
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
@@ -31,4 +31,5 @@
         </com.scwang.smart.refresh.footer.ClassicsFooter>
 
     </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
