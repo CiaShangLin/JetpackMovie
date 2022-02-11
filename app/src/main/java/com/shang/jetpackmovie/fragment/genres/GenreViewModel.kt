@@ -13,13 +13,13 @@ class GenreViewModel(
 ) : ViewModel() {
 
     private var _path = 1
-    private val _genreLiveData = MutableLiveData<UiState<List<MovieListBean.Result>>>()
+    private val _genreLiveData = MutableLiveData<UiState<MovieListBean>>()
 
 
-    val genreLiveData = liveData<UiState<List<MovieListBean.Result>>> {
+    val genreLiveData = liveData<UiState<MovieListBean>> {
         try {
-            val bean = genreRepository.getMovieGenreDetail("${genre?.name}", _path)
-            emit(UiState.success(listOf()))
+            val bean = genreRepository.getMovieGenreDetail("${genre?.id}", _path)
+            emit(UiState.success(bean))
         } catch (e: Exception) {
             emit(UiState.failure(e))
             e.printStackTrace()

@@ -5,12 +5,11 @@ import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import com.shang.jetpackmovie.MovieRefreshHeader
 import com.shang.jetpackmovie.R
+import com.shang.jetpackmovie.api.UiState
 import com.shang.jetpackmovie.bean.MovieGenreBean
 import com.shang.jetpackmovie.databinding.FragmentGenreBinding
 import com.shang.jetpackmovie.viewBinding
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -28,18 +27,29 @@ class GenreFragment : Fragment(R.layout.fragment_genre) {
 
     private val mBinding by viewBinding(FragmentGenreBinding::bind)
     private val mGenre by lazy { arguments?.getSerializable(GENRE) as MovieGenreBean.Genre? }
-    private val mViewModel by viewModel<GenreViewModel>{ parametersOf(mGenre)}
+    private val mViewModel by viewModel<GenreViewModel> { parametersOf(mGenre) }
     private val mGenreController by lazy { GenreController() }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mViewModel.genreLiveData.observe(viewLifecycleOwner,{
+        mViewModel.genreLiveData.observe(viewLifecycleOwner, {
+            when (it) {
+                is UiState.Success -> {
+                    mGenreController.setData(it.data.results)
+                }
+                is UiState.Failure -> {
 
+                }
+                UiState.Loading -> {
+
+                }
+            }
         })
 
-        mBinding.rvGenre.layoutManager=GridLayoutManager(requireContext(),2)
+        mBinding.rvGenre.layoutManager = GridLayoutManager(requireContext(), 2)
+        mBinding.rvGenre.addItemDecoration(MovieDecoration())
         mBinding.rvGenre.setControllerAndBuildModels(mGenreController)
     }
 }

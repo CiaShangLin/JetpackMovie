@@ -20,6 +20,10 @@
 
         <!-- 底層Layout顏色，通常上面的子Layout不設置background的話會是透明的 -->
         <item name="BottomLayerColor">@color/white</item>
+
+        <!-- MovieItem的背景顏色 @drawable/style_epoxy_movie_model-->
+        <item name="EpoxyMovieModelBackground">@color/white</item>
+
     </style>
 
     <style name="MainBottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
@@ -35,5 +39,26 @@
         <item name="tabSelectedTextColor">@color/yellow_ffd306</item>
         <item name="tabTextColor">@color/black</item>
         <item name="tabBackground">@color/white</item>
+    </style>
+
+    <style name="MovieTitle" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="MovieDay" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="EpoxyMovieModelCorner" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">@dimen/epoxy_movie_model_corner</item>
+        <item name="cornerSizeTopRight">@dimen/epoxy_movie_model_corner</item>
     </style>
 </resources>

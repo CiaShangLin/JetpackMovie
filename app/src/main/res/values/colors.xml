@@ -8,6 +8,8 @@
 
     <color name="black">#FF000000</color>
     <color name="black_3c3c3c">#3C3C3C</color>
+    <color name="black_272727">#272727</color>
+
 
     <color name="white">#FFFFFFFF</color>
 
@@ -17,4 +19,6 @@
 
     <color name="yellow_ffd306">#FFD306</color>
 
+
+    <color name="green_01b468">#01B468</color>
 </resources>
