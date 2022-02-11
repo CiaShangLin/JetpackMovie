@@ -1,4 +1,4 @@
-package com.shang.jetpackmovie
+package com.shang.jetpackmovie.utils
 
 import android.content.Context
 import android.content.SharedPreferences

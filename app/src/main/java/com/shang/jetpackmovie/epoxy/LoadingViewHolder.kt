@@ -1,4 +1,4 @@
-package com.shang.jetpackmovie.fragment.genres
+package com.shang.jetpackmovie.epoxy
 
 import android.view.View
 import com.airbnb.epoxy.EpoxyHolder

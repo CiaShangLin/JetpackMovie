@@ -1,4 +1,4 @@
-package com.shang.jetpackmovie.fragment.genres
+package com.shang.jetpackmovie.epoxy
 
 import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder

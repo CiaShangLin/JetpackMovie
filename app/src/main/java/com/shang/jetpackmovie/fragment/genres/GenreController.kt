@@ -3,6 +3,8 @@ package com.shang.jetpackmovie.fragment.genres
 import com.airbnb.epoxy.AutoModel
 import com.airbnb.epoxy.EpoxyController
 import com.shang.jetpackmovie.bean.MovieListBean
+import com.shang.jetpackmovie.epoxy.BaseMovieModel_
+import com.shang.jetpackmovie.epoxy.LoadingModel_
 
 class GenreController: EpoxyController() {
 

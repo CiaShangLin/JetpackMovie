@@ -9,7 +9,7 @@ import com.shang.jetpackmovie.R
 import com.shang.jetpackmovie.api.UiState
 import com.shang.jetpackmovie.bean.MovieGenreBean
 import com.shang.jetpackmovie.databinding.FragmentGenreBinding
-import com.shang.jetpackmovie.viewBinding
+import com.shang.jetpackmovie.ui.viewBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 

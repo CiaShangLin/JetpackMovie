@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/EpoxyMovieModelCorner" />
 
-    <com.shang.jetpackmovie.VoteAverageView
+    <com.shang.jetpackmovie.ui.VoteAverageView
         android:id="@+id/voteAverageView"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -29,7 +29,7 @@
         app:layout_constraintStart_toStartOf="@+id/ivCover"
         app:layout_constraintTop_toBottomOf="@+id/ivCover">
 
-    </com.shang.jetpackmovie.VoteAverageView>
+    </com.shang.jetpackmovie.ui.VoteAverageView>
 
     <TextView
         android:id="@+id/tvTitle"

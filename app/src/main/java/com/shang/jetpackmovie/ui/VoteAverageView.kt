@@ -1,4 +1,4 @@
-package com.shang.jetpackmovie
+package com.shang.jetpackmovie.ui
 
 import android.content.Context
 import android.graphics.Canvas
@@ -6,6 +6,7 @@ import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
+import com.shang.jetpackmovie.R
 import com.shang.jetpackmovie.utils.dp2px
 
 class VoteAverageView @JvmOverloads constructor(

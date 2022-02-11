@@ -11,7 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.shang.jetpackmovie.R
 import com.shang.jetpackmovie.databinding.FragmentSettingBinding
-import com.shang.jetpackmovie.viewBinding
+import com.shang.jetpackmovie.ui.viewBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SettingFragment : Fragment(R.layout.fragment_setting) {

@@ -1,4 +1,4 @@
-package com.shang.jetpackmovie
+package com.shang.jetpackmovie.ui
 
 
 import android.app.Activity

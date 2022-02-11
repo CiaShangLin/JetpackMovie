@@ -1,21 +1,16 @@
 package com.shang.jetpackmovie.fragment.home
 
 import android.os.Bundle
-import android.system.Os.bind
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
-import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
 import com.shang.jetpackmovie.R
 import com.shang.jetpackmovie.api.UiState
 import com.shang.jetpackmovie.bean.MovieGenreBean
 import com.shang.jetpackmovie.databinding.FragmentHomeBinding
-import com.shang.jetpackmovie.viewBinding
-import org.koin.android.ext.android.get
-import org.koin.android.ext.android.inject
+import com.shang.jetpackmovie.ui.viewBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import retrofit2.Retrofit
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
 

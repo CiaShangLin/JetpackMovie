@@ -1,11 +1,11 @@
-package com.shang.jetpackmovie.fragment.genres
+package com.shang.jetpackmovie.epoxy
 
 import android.view.View
 import android.widget.TextView
 import com.airbnb.epoxy.EpoxyHolder
 import com.google.android.material.imageview.ShapeableImageView
 import com.shang.jetpackmovie.R
-import com.shang.jetpackmovie.VoteAverageView
+import com.shang.jetpackmovie.ui.VoteAverageView
 
 class BaseMovieViewHolder : EpoxyHolder() {
 

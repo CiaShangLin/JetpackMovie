@@ -1,17 +1,14 @@
-package com.shang.jetpackmovie.fragment.genres
+package com.shang.jetpackmovie.epoxy
 
-import android.util.Log
 import android.widget.TextView
 import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.DrawableTransformation
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.imageview.ShapeableImageView
 import com.shang.jetpackmovie.R
-import com.shang.jetpackmovie.VoteAverageView
+import com.shang.jetpackmovie.ui.VoteAverageView
 import com.shang.jetpackmovie.bean.MovieListBean
 
 @EpoxyModelClass(layout = R.layout.epoxy_base_movie_model)
@@ -46,7 +43,7 @@ abstract class BaseMovieModel : EpoxyModelWithHolder<BaseMovieViewHolder>() {
         tvDay.text = "$release_date : $day"
     }
 
-    protected open fun setVoteAverage(voteAverageView: VoteAverageView,voteAverage:Double){
+    protected open fun setVoteAverage(voteAverageView: VoteAverageView, voteAverage:Double){
         voteAverageView.setProgress(voteAverage)
     }
 }
