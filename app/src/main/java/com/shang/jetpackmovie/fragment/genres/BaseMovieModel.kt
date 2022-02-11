@@ -11,6 +11,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.imageview.ShapeableImageView
 import com.shang.jetpackmovie.R
+import com.shang.jetpackmovie.VoteAverageView
 import com.shang.jetpackmovie.bean.MovieListBean
 
 @EpoxyModelClass(layout = R.layout.epoxy_base_movie_model)
@@ -25,7 +26,7 @@ abstract class BaseMovieModel : EpoxyModelWithHolder<BaseMovieViewHolder>() {
             setCover(holder.ivCover, it.poster_path)
             setTitle(holder.tvTitle, it.title)
             setDay(holder.tvDay, it.release_date)
-            Log.d("DEBUG","${data?.vote_average}")
+            setVoteAverage(holder.voteAverageView,it.vote_average)
         }
     }
 
@@ -43,5 +44,9 @@ abstract class BaseMovieModel : EpoxyModelWithHolder<BaseMovieViewHolder>() {
     protected open fun setDay(tvDay: TextView, day: String) {
         val release_date = tvDay.context.getString(R.string.release_date)
         tvDay.text = "$release_date : $day"
+    }
+
+    protected open fun setVoteAverage(voteAverageView: VoteAverageView,voteAverage:Double){
+        voteAverageView.setProgress(voteAverage)
     }
 }

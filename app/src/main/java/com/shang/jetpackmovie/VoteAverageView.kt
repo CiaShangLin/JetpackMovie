@@ -6,25 +6,27 @@ import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
+import com.shang.jetpackmovie.utils.dp2px
 
 class VoteAverageView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
-    private var progressText = 0
+    private var mProgress: Double = 8.0
 
     private val centerX by lazy { width / 2.0f }
     private val centerY by lazy { height / 2.0f }
 
-    private val mProgressWidth = 24f
-    private val mProgressPadding = mProgressWidth / 2
+    private val mProgressWidth by lazy { 4.dp2px(context).toFloat() }
+    private val mProgressPadding by lazy { mProgressWidth / 2 }
 
     private val mProgressPaint by lazy {
         Paint().apply {
             color = ContextCompat.getColor(context, R.color.green_01b468)
             strokeWidth = mProgressWidth
             style = Paint.Style.STROKE
-            //開頭和結尾的圓角
+            strokeCap = Paint.Cap.ROUND
+            isAntiAlias = true
         }
     }
 
@@ -33,6 +35,7 @@ class VoteAverageView @JvmOverloads constructor(
             color = ContextCompat.getColor(context, R.color.black_3c3c3c)
             strokeWidth = mProgressWidth
             style = Paint.Style.STROKE
+            isAntiAlias = true
         }
     }
 
@@ -40,6 +43,7 @@ class VoteAverageView @JvmOverloads constructor(
         Paint().apply {
             color = ContextCompat.getColor(context, R.color.black_272727)
             style = Paint.Style.FILL
+            isAntiAlias = true
         }
     }
 
@@ -47,8 +51,9 @@ class VoteAverageView @JvmOverloads constructor(
         Paint().apply {
             color = ContextCompat.getColor(context, R.color.white)
             style = Paint.Style.FILL
-            textSize = 120f
+            textSize = 12.dp2px(context).toFloat()
             textAlign = Paint.Align.CENTER
+            isAntiAlias = true
         }
     }
 
@@ -78,19 +83,21 @@ class VoteAverageView @JvmOverloads constructor(
                 width.toFloat() - mProgressPadding,
                 centerY + centerX - mProgressPadding,
                 -90f,
-                36f,
+                getPercentAngle(),
                 false,
                 mProgressPaint
             )
-            it.drawText("10%", centerX, mTextCenterY, mTextPaint)
+            it.drawText("${(mProgress * 10).toInt()}%", centerX, mTextCenterY, mTextPaint)
         }
     }
 
-    fun setText(){
-
+    fun setProgress(progress: Double) {
+        mProgress = progress
+        invalidate()
     }
 
-    fun setProgress(){
-
+    //progress傳進來的時候會是8.4不會是84這樣
+    private fun getPercentAngle(): Float {
+        return (mProgress * 10 / 100 * 360).toFloat()
     }
 }

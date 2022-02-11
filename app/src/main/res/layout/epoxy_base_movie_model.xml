@@ -11,12 +11,25 @@
         android:id="@+id/ivCover"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintDimensionRatio="17:25"
+        android:scaleType="fitXY"
+        app:layout_constraintDimensionRatio="3:4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/EpoxyMovieModelCorner" />
+
+    <com.shang.jetpackmovie.VoteAverageView
+        android:id="@+id/voteAverageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.2"
+        app:layout_constraintDimensionRatio="1:1"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/ivCover"
+        app:layout_constraintStart_toStartOf="@+id/ivCover"
+        app:layout_constraintTop_toBottomOf="@+id/ivCover">
+
+    </com.shang.jetpackmovie.VoteAverageView>
 
     <TextView
         android:id="@+id/tvTitle"
@@ -24,12 +37,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
         android:text="Title"
         app:layout_constraintEnd_toEndOf="@+id/ivCover"
         app:layout_constraintStart_toStartOf="@+id/ivCover"
-        app:layout_constraintTop_toBottomOf="@+id/ivCover" />
+        app:layout_constraintTop_toBottomOf="@+id/voteAverageView" />
 
     <TextView
         android:id="@+id/tvDay"
