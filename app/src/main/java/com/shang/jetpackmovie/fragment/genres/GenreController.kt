@@ -6,10 +6,10 @@ import com.shang.jetpackmovie.bean.MovieListBean
 import com.shang.jetpackmovie.epoxy.BaseMovieModel_
 import com.shang.jetpackmovie.epoxy.LoadingModel_
 
-class GenreController: EpoxyController() {
+class GenreController : EpoxyController() {
 
     @AutoModel
-    lateinit var loadingModel:LoadingModel_
+    lateinit var loadingModel: LoadingModel_
 
 
     private val mData = mutableListOf<MovieListBean.Result>()
@@ -19,18 +19,23 @@ class GenreController: EpoxyController() {
         requestModelBuild()
     }
 
+    fun refresh() {
+        mData.clear()
+        requestModelBuild()
+    }
+
     override fun buildModels() {
         loadingModel
             .spanSizeOverride { totalSpanCount, position, itemCount ->
                 return@spanSizeOverride 2
             }
-            .addIf(mData.isEmpty(),this)
+            .addIf(mData.isEmpty(), this)
 
         mData.forEachIndexed { index, result ->
-           BaseMovieModel_()
-               .id(index)
-               .data(result)
-               .addTo(this)
+            BaseMovieModel_()
+                .id(index)
+                .data(result)
+                .addTo(this)
         }
 
     }

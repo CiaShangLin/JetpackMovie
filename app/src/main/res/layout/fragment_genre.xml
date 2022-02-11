@@ -17,7 +17,6 @@
         <com.shang.jetpackmovie.MovieRefreshHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
         </com.shang.jetpackmovie.MovieRefreshHeader>
 
         <com.airbnb.epoxy.EpoxyRecyclerView
@@ -25,11 +24,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <com.scwang.smart.refresh.footer.ClassicsFooter
+<!--        <com.scwang.smart.refresh.footer.ClassicsFooter-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+
+<!--        </com.scwang.smart.refresh.footer.ClassicsFooter>-->
+        <com.shang.jetpackmovie.MovieRefreshFooter
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-        </com.scwang.smart.refresh.footer.ClassicsFooter>
+        </com.shang.jetpackmovie.MovieRefreshFooter>
 
     </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 

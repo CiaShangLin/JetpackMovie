@@ -38,12 +38,17 @@ class GenreFragment : Fragment(R.layout.fragment_genre) {
             when (it) {
                 is UiState.Success -> {
                     mGenreController.setData(it.data.results)
+                    Log.d("DEBUG",it.data.results.toString())
+                    mBinding.smartRefresh.finishRefresh()
+                    mBinding.smartRefresh.finishLoadMore()
                 }
                 is UiState.Failure -> {
-
+                    Log.d("DEBUG","Error")
+                    mBinding.smartRefresh.finishRefresh()
+                    mBinding.smartRefresh.finishLoadMore()
                 }
                 UiState.Loading -> {
-
+                    Log.d("DEBUG","Loading")
                 }
             }
         })
@@ -51,5 +56,15 @@ class GenreFragment : Fragment(R.layout.fragment_genre) {
         mBinding.rvGenre.layoutManager = GridLayoutManager(requireContext(), 2)
         mBinding.rvGenre.addItemDecoration(MovieDecoration())
         mBinding.rvGenre.setControllerAndBuildModels(mGenreController)
+
+
+        mBinding.smartRefresh.setOnRefreshListener {
+            mGenreController.refresh()
+            mViewModel.refresh()
+        }
+
+        mBinding.smartRefresh.setOnLoadMoreListener {
+            mViewModel.loadMore()
+        }
     }
 }
