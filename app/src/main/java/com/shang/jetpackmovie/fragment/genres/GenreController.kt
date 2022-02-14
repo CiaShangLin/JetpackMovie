@@ -1,6 +1,5 @@
 package com.shang.jetpackmovie.fragment.genres
 
-import android.util.Log
 import com.airbnb.epoxy.AutoModel
 import com.airbnb.epoxy.EpoxyController
 import com.shang.jetpackmovie.bean.MovieListBean
@@ -8,10 +7,10 @@ import com.shang.jetpackmovie.epoxy.BaseMovieModel
 
 import com.shang.jetpackmovie.epoxy.ErrorModel_
 import com.shang.jetpackmovie.epoxy.LoadingModel_
-import com.shang.jetpackmovie.fragment.genres.ui.GenreMovieModel
 import com.shang.jetpackmovie.fragment.genres.ui.GenreMovieModel_
 
-class GenreController(private val movieFavorListener: BaseMovieModel.MovieFavorListener) : EpoxyController() {
+class GenreController(private val movieFavorListener: BaseMovieModel.MovieFavorListener) :
+    EpoxyController() {
 
     @AutoModel
     lateinit var loadingModel: LoadingModel_
@@ -20,6 +19,7 @@ class GenreController(private val movieFavorListener: BaseMovieModel.MovieFavorL
     lateinit var errorModel: ErrorModel_
 
     private var mError = false
+
     private val mData = mutableListOf<MovieListBean.Result>()
 
     fun setData(results: List<MovieListBean.Result>) {
@@ -59,6 +59,5 @@ class GenreController(private val movieFavorListener: BaseMovieModel.MovieFavorL
                 .favorClickListener(movieFavorListener)
                 .addTo(this)
         }
-
     }
 }
