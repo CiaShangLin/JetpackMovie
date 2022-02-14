@@ -38,18 +38,15 @@ class GenreFragment : Fragment(R.layout.fragment_genre) {
             when (it) {
                 is UiState.Success -> {
                     mGenreController.setData(it.data.results)
-                    Log.d("DEBUG",it.data.results.toString())
                     mBinding.smartRefresh.finishRefresh()
                     mBinding.smartRefresh.finishLoadMore()
                 }
                 is UiState.Failure -> {
-                    Log.d("DEBUG","Error")
+                    mGenreController.setError()
                     mBinding.smartRefresh.finishRefresh()
                     mBinding.smartRefresh.finishLoadMore()
                 }
-                UiState.Loading -> {
-                    Log.d("DEBUG","Loading")
-                }
+                UiState.Loading -> { }
             }
         })
 

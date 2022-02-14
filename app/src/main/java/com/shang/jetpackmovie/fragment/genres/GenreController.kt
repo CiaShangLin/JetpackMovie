@@ -4,6 +4,7 @@ import com.airbnb.epoxy.AutoModel
 import com.airbnb.epoxy.EpoxyController
 import com.shang.jetpackmovie.bean.MovieListBean
 import com.shang.jetpackmovie.epoxy.BaseMovieModel_
+import com.shang.jetpackmovie.epoxy.ErrorModel_
 import com.shang.jetpackmovie.epoxy.LoadingModel_
 
 class GenreController : EpoxyController() {
@@ -11,7 +12,10 @@ class GenreController : EpoxyController() {
     @AutoModel
     lateinit var loadingModel: LoadingModel_
 
+    @AutoModel
+    lateinit var errorModel: ErrorModel_
 
+    private var mError = false
     private val mData = mutableListOf<MovieListBean.Result>()
 
     fun setData(results: List<MovieListBean.Result>) {
@@ -21,6 +25,12 @@ class GenreController : EpoxyController() {
 
     fun refresh() {
         mData.clear()
+        mError = false
+        requestModelBuild()
+    }
+
+    fun setError() {
+        mError = true
         requestModelBuild()
     }
 
@@ -29,7 +39,14 @@ class GenreController : EpoxyController() {
             .spanSizeOverride { totalSpanCount, position, itemCount ->
                 return@spanSizeOverride 2
             }
-            .addIf(mData.isEmpty(), this)
+            .addIf(mData.isEmpty() && !mError, this)
+
+        errorModel
+            .spanSizeOverride { totalSpanCount, position, itemCount ->
+                return@spanSizeOverride 2
+            }
+            .addIf(mData.isEmpty() && mError, this)
+
 
         mData.forEachIndexed { index, result ->
             BaseMovieModel_()
