@@ -3,11 +3,11 @@ package com.shang.jetpackmovie.fragment.favor
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
+import com.shang.jetpackmovie.room.entity.MovieFavorEntity
 
-class FavorViewModel : ViewModel() {
+class FavorViewModel(private val favorRepository: FavorRepository) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
-    }
-    val text: LiveData<String> = _text
+    fun getAll() = favorRepository.getAll()
+
 }

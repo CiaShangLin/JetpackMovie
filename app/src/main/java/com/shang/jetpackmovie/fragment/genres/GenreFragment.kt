@@ -28,7 +28,7 @@ class GenreFragment : Fragment(R.layout.fragment_genre) {
     private val mBinding by viewBinding(FragmentGenreBinding::bind)
     private val mGenre by lazy { arguments?.getSerializable(GENRE) as MovieGenreBean.Genre? }
     private val mViewModel by viewModel<GenreViewModel> { parametersOf(mGenre) }
-    private val mGenreController by lazy { GenreController() }
+    private val mGenreController by lazy { GenreController(mViewModel) }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

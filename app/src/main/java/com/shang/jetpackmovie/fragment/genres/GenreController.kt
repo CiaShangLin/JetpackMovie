@@ -4,13 +4,14 @@ import android.util.Log
 import com.airbnb.epoxy.AutoModel
 import com.airbnb.epoxy.EpoxyController
 import com.shang.jetpackmovie.bean.MovieListBean
+import com.shang.jetpackmovie.epoxy.BaseMovieModel
 
 import com.shang.jetpackmovie.epoxy.ErrorModel_
 import com.shang.jetpackmovie.epoxy.LoadingModel_
 import com.shang.jetpackmovie.fragment.genres.ui.GenreMovieModel
 import com.shang.jetpackmovie.fragment.genres.ui.GenreMovieModel_
 
-class GenreController : EpoxyController() {
+class GenreController(private val movieFavorListener: BaseMovieModel.MovieFavorListener) : EpoxyController() {
 
     @AutoModel
     lateinit var loadingModel: LoadingModel_
@@ -55,6 +56,7 @@ class GenreController : EpoxyController() {
             GenreMovieModel_()
                 .id(index)
                 .data(result)
+                .favorClickListener(movieFavorListener)
                 .addTo(this)
         }
 

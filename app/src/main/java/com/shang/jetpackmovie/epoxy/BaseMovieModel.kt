@@ -2,10 +2,10 @@ package com.shang.jetpackmovie.epoxy
 
 import android.content.Context
 import android.util.Log
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.airbnb.epoxy.EpoxyAttribute
-import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
@@ -23,6 +23,12 @@ import com.shang.jetpackmovie.bean.MovieListBean
 abstract class BaseMovieModel<VH : BaseMovieViewHolder> :
     EpoxyModelWithHolder<VH>() {
 
+    interface MovieFavorListener {
+        fun isFavorites(id: Int): Boolean
+        fun insert(data: MovieListBean.Result)
+        fun delete(data: MovieListBean.Result)
+    }
+
     abstract fun gotoActivity(context: Context)
 
     @EpoxyAttribute
@@ -31,14 +37,18 @@ abstract class BaseMovieModel<VH : BaseMovieViewHolder> :
     @EpoxyAttribute(EpoxyAttribute.Option.DoNotHash)
     var itemClickListener: ((context: Context) -> Unit)? = null
 
+    @EpoxyAttribute(EpoxyAttribute.Option.DoNotHash)
+    var favorClickListener: MovieFavorListener? = null
+
     override fun bind(holder: VH) {
         super.bind(holder)
-        data?.let {
+        data.let {
             setCover(holder.ivCover, it.poster_path)
             setTitle(holder.tvTitle, it.title)
             setDay(holder.tvDay, it.release_date)
             setVoteAverage(holder.voteAverageView, it.vote_average)
             setOnClick(holder.vContent)
+            setFavorites(holder.ivFavor)
         }
     }
 
@@ -65,6 +75,25 @@ abstract class BaseMovieModel<VH : BaseMovieViewHolder> :
     protected open fun setOnClick(vContent: ConstraintLayout) {
         vContent.setOnClickListener {
             gotoActivity(it.context)
+        }
+    }
+
+    protected open fun setFavorites(ivFavor: ImageView) {
+        var isFavorites = favorClickListener?.isFavorites(data.id) ?: false
+        if (isFavorites) {
+            ivFavor.setImageResource(R.drawable.icon_favor)
+        } else {
+            ivFavor.setImageResource(R.drawable.icon_not_favor)
+        }
+        ivFavor.setOnClickListener {
+            if (isFavorites) {
+                ivFavor.setImageResource(R.drawable.icon_not_favor)
+                favorClickListener?.delete(data)
+            } else {
+                ivFavor.setImageResource(R.drawable.icon_favor)
+                favorClickListener?.insert(data)
+            }
+            isFavorites = !isFavorites
         }
     }
 

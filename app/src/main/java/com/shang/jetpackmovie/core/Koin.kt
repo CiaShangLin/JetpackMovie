@@ -1,14 +1,20 @@
 package com.shang.jetpackmovie.core
 
+import android.app.Application
+import androidx.room.Room
 import com.shang.jetpackmovie.activity.splash.SplashRepository
 import com.shang.jetpackmovie.activity.splash.SplashViewModel
 import com.shang.jetpackmovie.api.AuthInterceptor
 import com.shang.jetpackmovie.api.LanguageInterceptor
 import com.shang.jetpackmovie.api.MovieApi
+import com.shang.jetpackmovie.fragment.favor.FavorRepository
+import com.shang.jetpackmovie.fragment.favor.FavorViewModel
 import com.shang.jetpackmovie.fragment.genres.GenreRepository
 import com.shang.jetpackmovie.fragment.genres.GenreViewModel
 import com.shang.jetpackmovie.fragment.home.HomeRepository
 import com.shang.jetpackmovie.fragment.home.HomeViewModel
+import com.shang.jetpackmovie.room.MovieDatabase
+import com.shang.jetpackmovie.room.dao.MovieFavorDao
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidApplication
@@ -16,6 +22,28 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+
+val roomModule = module {
+
+    fun provideDataBase(application: Application): MovieDatabase {
+        return Room
+            .databaseBuilder(application, MovieDatabase::class.java, MovieDatabase.DB_NAME)
+            .allowMainThreadQueries()
+            .build()
+    }
+
+    fun provideMovieFavorDao(dataBase: MovieDatabase): MovieFavorDao {
+        return dataBase.movieFavorDao()
+    }
+
+    single {
+        provideDataBase(androidApplication())
+    }
+
+    single {
+        provideMovieFavorDao(get())
+    }
+}
 
 val networkModule = module {
 
@@ -52,6 +80,16 @@ val homeViewModelModule = module {
     }
 }
 
+val favorViewModelModule = module {
+    viewModel {
+        FavorViewModel(get())
+    }
+    single {
+        FavorRepository(get())
+    }
+}
+
+
 val splashViewModelModule = module {
     viewModel {
         SplashViewModel(this.androidApplication(), get())
@@ -62,12 +100,12 @@ val splashViewModelModule = module {
 }
 
 val genresViewModule = module {
-    viewModel {parameters->
-        GenreViewModel(parameters.get(),get())
+    viewModel { parameters ->
+        GenreViewModel(parameters.get(), get())
     }
 
 
     single {
-        GenreRepository(get())
+        GenreRepository(get(),get())
     }
 }

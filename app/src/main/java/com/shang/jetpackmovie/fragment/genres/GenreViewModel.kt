@@ -6,13 +6,14 @@ import com.shang.jetpackmovie.api.UiState
 import com.shang.jetpackmovie.bean.MovieBean
 import com.shang.jetpackmovie.bean.MovieGenreBean
 import com.shang.jetpackmovie.bean.MovieListBean
+import com.shang.jetpackmovie.epoxy.BaseMovieModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class GenreViewModel(
     private val genre: MovieGenreBean.Genre?,
     private val genreRepository: GenreRepository
-) : ViewModel() {
+) : ViewModel(), BaseMovieModel.MovieFavorListener {
 
     private var _path = 1
     private val _genreLiveData = MutableLiveData<UiState<MovieListBean>>()
@@ -35,12 +36,12 @@ class GenreViewModel(
         getMovieListApi()
     }
 
-    fun loadMore(){
+    fun loadMore() {
         _path++
         getMovieListApi()
     }
 
-    private fun getMovieListApi(){
+    private fun getMovieListApi() {
         viewModelScope.launch {
             try {
                 delay(1000)
@@ -52,4 +53,10 @@ class GenreViewModel(
             }
         }
     }
+
+    override fun isFavorites(id: Int) = genreRepository.isFavorites(id)
+
+    override fun insert(data: MovieListBean.Result) = genreRepository.insert(data)
+
+    override fun delete(data: MovieListBean.Result) = genreRepository.delete(data)
 }

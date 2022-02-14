@@ -1,5 +1,7 @@
 package com.shang.jetpackmovie.bean
 
+import com.shang.jetpackmovie.room.entity.MovieFavorEntity
+
 /**
  * 電影列表
  *
@@ -46,5 +48,13 @@ data class MovieListBean(
         val video: Boolean,
         val vote_average: Double,
         val vote_count: Int
-    )
+    ) {
+        fun convertToMovieEntity() = MovieFavorEntity(
+            id,
+            title,
+            poster_path,
+            vote_average,
+            release_date
+        )
+    }
 }
