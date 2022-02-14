@@ -2,10 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/vContent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/style_epoxy_movie_model"
-    android:id="@+id/vContent"
     android:elevation="4dp">
 
     <com.google.android.material.imageview.ShapeableImageView
@@ -23,12 +23,12 @@
         android:id="@+id/voteAverageView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintWidth_percent="0.2"
-        app:layout_constraintDimensionRatio="1:1"
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/ivCover"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintStart_toStartOf="@+id/ivCover"
-        app:layout_constraintTop_toBottomOf="@+id/ivCover">
+        app:layout_constraintTop_toBottomOf="@+id/ivCover"
+        app:layout_constraintWidth_percent="0.2">
 
     </com.shang.jetpackmovie.ui.VoteAverageView>
 
@@ -59,16 +59,18 @@
         app:layout_constraintTop_toBottomOf="@+id/tvTitle"
         app:layout_constraintVertical_bias="0.0" />
 
-    <ImageView
+    <com.shang.jetpackmovie.ui.MovieFavoritesImageView
         android:id="@+id/ivFavor"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
         android:scaleType="fitXY"
+        app:isFavoritesResource="@drawable/icon_favor"
         app:layout_constraintBottom_toTopOf="@+id/tvTitle"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="@+id/ivCover"
         app:layout_constraintTop_toBottomOf="@+id/ivCover"
-        app:srcCompat="@drawable/icon_not_favor" />
+        app:noFavoritesResource="?attr/MovieNoFavoritesResource"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

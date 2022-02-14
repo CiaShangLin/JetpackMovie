@@ -2,4 +2,11 @@
 <resources>
     <attr name="BottomLayerColor" format="color" />
     <attr name="EpoxyMovieModelBackground" format="color" />
+    <attr name="MovieNoFavoritesResource" format="reference" />
+
+
+    <declare-styleable name="MovieFavoritesImageView">
+        <attr name="isFavoritesResource" format="reference" />
+        <attr name="noFavoritesResource" format="reference" />
+    </declare-styleable>
 </resources>

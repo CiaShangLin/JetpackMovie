@@ -1,7 +1,7 @@
 package com.shang.jetpackmovie.epoxy
 
 import android.content.Context
-import android.util.Log
+import android.util.TypedValue
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -13,6 +13,7 @@ import com.google.android.material.imageview.ShapeableImageView
 import com.shang.jetpackmovie.R
 import com.shang.jetpackmovie.ui.VoteAverageView
 import com.shang.jetpackmovie.bean.MovieListBean
+import com.shang.jetpackmovie.ui.MovieFavoritesImageView
 
 /**
  * @EpoxyModelClass當有這個註解的時候不能使用泛型,因為他會產出_的class他是new不出泛型的class
@@ -78,22 +79,17 @@ abstract class BaseMovieModel<VH : BaseMovieViewHolder> :
         }
     }
 
-    protected open fun setFavorites(ivFavor: ImageView) {
+    protected open fun setFavorites(ivFavor: MovieFavoritesImageView) {
         var isFavorites = favorClickListener?.isFavorites(data.id) ?: false
-        if (isFavorites) {
-            ivFavor.setImageResource(R.drawable.icon_favor)
-        } else {
-            ivFavor.setImageResource(R.drawable.icon_not_favor)
-        }
+        ivFavor.setIsFavorites(isFavorites)
         ivFavor.setOnClickListener {
             if (isFavorites) {
-                ivFavor.setImageResource(R.drawable.icon_not_favor)
                 favorClickListener?.delete(data)
             } else {
-                ivFavor.setImageResource(R.drawable.icon_favor)
                 favorClickListener?.insert(data)
             }
             isFavorites = !isFavorites
+            ivFavor.setIsFavorites(isFavorites)
         }
     }
 

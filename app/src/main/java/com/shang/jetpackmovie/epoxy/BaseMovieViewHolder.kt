@@ -7,6 +7,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.airbnb.epoxy.EpoxyHolder
 import com.google.android.material.imageview.ShapeableImageView
 import com.shang.jetpackmovie.R
+import com.shang.jetpackmovie.ui.MovieFavoritesImageView
 import com.shang.jetpackmovie.ui.VoteAverageView
 
 open class BaseMovieViewHolder : EpoxyHolder() {
@@ -16,7 +17,7 @@ open class BaseMovieViewHolder : EpoxyHolder() {
     lateinit var tvTitle: TextView
     lateinit var tvDay: TextView
     lateinit var voteAverageView: VoteAverageView
-    lateinit var ivFavor: ImageView
+    lateinit var ivFavor: MovieFavoritesImageView
 
     override fun bindView(itemView: View) {
         vContent = itemView.findViewById(R.id.vContent)
