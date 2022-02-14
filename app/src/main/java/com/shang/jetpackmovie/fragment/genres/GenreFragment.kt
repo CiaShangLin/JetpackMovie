@@ -1,7 +1,6 @@
 package com.shang.jetpackmovie.fragment.genres
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
@@ -9,6 +8,7 @@ import com.shang.jetpackmovie.R
 import com.shang.jetpackmovie.api.UiState
 import com.shang.jetpackmovie.bean.MovieGenreBean
 import com.shang.jetpackmovie.databinding.FragmentGenreBinding
+import com.shang.jetpackmovie.fragment.genres.ui.MovieDecoration
 import com.shang.jetpackmovie.ui.viewBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf

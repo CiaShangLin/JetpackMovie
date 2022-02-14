@@ -1,4 +1,4 @@
-package com.shang.jetpackmovie.fragment.genres
+package com.shang.jetpackmovie.fragment.genres.ui
 
 import android.graphics.Rect
 import android.view.View
@@ -24,11 +24,11 @@ class MovieDecoration : RecyclerView.ItemDecoration() {
         }
 
         if (position % 2 == 0) {
-            outRect.left=8.dp2px(parent.context)
-            outRect.right=4.dp2px(parent.context)
+            outRect.left = 8.dp2px(parent.context)
+            outRect.right = 4.dp2px(parent.context)
         } else {
-            outRect.left=4.dp2px(parent.context)
-            outRect.right=8.dp2px(parent.context)
+            outRect.left = 4.dp2px(parent.context)
+            outRect.right = 8.dp2px(parent.context)
         }
     }
 }

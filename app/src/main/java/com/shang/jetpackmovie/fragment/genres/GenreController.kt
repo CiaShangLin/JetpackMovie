@@ -1,11 +1,14 @@
 package com.shang.jetpackmovie.fragment.genres
 
+import android.util.Log
 import com.airbnb.epoxy.AutoModel
 import com.airbnb.epoxy.EpoxyController
 import com.shang.jetpackmovie.bean.MovieListBean
-import com.shang.jetpackmovie.epoxy.BaseMovieModel_
+
 import com.shang.jetpackmovie.epoxy.ErrorModel_
 import com.shang.jetpackmovie.epoxy.LoadingModel_
+import com.shang.jetpackmovie.fragment.genres.ui.GenreMovieModel
+import com.shang.jetpackmovie.fragment.genres.ui.GenreMovieModel_
 
 class GenreController : EpoxyController() {
 
@@ -49,7 +52,7 @@ class GenreController : EpoxyController() {
 
 
         mData.forEachIndexed { index, result ->
-            BaseMovieModel_()
+            GenreMovieModel_()
                 .id(index)
                 .data(result)
                 .addTo(this)

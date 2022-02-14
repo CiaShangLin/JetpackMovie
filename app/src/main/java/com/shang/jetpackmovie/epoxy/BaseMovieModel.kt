@@ -1,6 +1,9 @@
 package com.shang.jetpackmovie.epoxy
 
+import android.content.Context
+import android.util.Log
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
@@ -11,19 +14,31 @@ import com.shang.jetpackmovie.R
 import com.shang.jetpackmovie.ui.VoteAverageView
 import com.shang.jetpackmovie.bean.MovieListBean
 
-@EpoxyModelClass(layout = R.layout.epoxy_base_movie_model)
-abstract class BaseMovieModel : EpoxyModelWithHolder<BaseMovieViewHolder>() {
+/**
+ * @EpoxyModelClass當有這個註解的時候不能使用泛型,因為他會產出_的class他是new不出泛型的class
+ * 可以泛型ViewModel但是不能泛型其他的，目前還找不到原因，可能是要繼承其他的class
+ * BaseMovieModel設定為給子類繼承可以不用寫@EpoxyModelClass，但是子類一定要寫
+ */
+//@EpoxyModelClass(layout = R.layout.epoxy_base_movie_model)
+abstract class BaseMovieModel<VH : BaseMovieViewHolder> :
+    EpoxyModelWithHolder<VH>() {
+
+    abstract fun gotoActivity(context: Context)
 
     @EpoxyAttribute
-    var data: MovieListBean.Result? = null
+    lateinit var data: MovieListBean.Result
 
-    override fun bind(holder: BaseMovieViewHolder) {
+    @EpoxyAttribute(EpoxyAttribute.Option.DoNotHash)
+    var itemClickListener: ((context: Context) -> Unit)? = null
+
+    override fun bind(holder: VH) {
         super.bind(holder)
         data?.let {
             setCover(holder.ivCover, it.poster_path)
             setTitle(holder.tvTitle, it.title)
             setDay(holder.tvDay, it.release_date)
-            setVoteAverage(holder.voteAverageView,it.vote_average)
+            setVoteAverage(holder.voteAverageView, it.vote_average)
+            setOnClick(holder.vContent)
         }
     }
 
@@ -43,7 +58,14 @@ abstract class BaseMovieModel : EpoxyModelWithHolder<BaseMovieViewHolder>() {
         tvDay.text = "$release_date : $day"
     }
 
-    protected open fun setVoteAverage(voteAverageView: VoteAverageView, voteAverage:Double){
+    protected open fun setVoteAverage(voteAverageView: VoteAverageView, voteAverage: Double) {
         voteAverageView.setProgress(voteAverage)
     }
+
+    protected open fun setOnClick(vContent: ConstraintLayout) {
+        vContent.setOnClickListener {
+            gotoActivity(it.context)
+        }
+    }
+
 }
