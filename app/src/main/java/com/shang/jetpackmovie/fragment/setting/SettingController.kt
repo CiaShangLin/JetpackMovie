@@ -29,7 +29,7 @@ class SettingController : EpoxyController() {
 
         themeModel.addTo(this)
 //        languageModel.addTo(this)
-        resolutionModel.addTo(this)
+//        resolutionModel.addTo(this)
         developersModel.addTo(this)
         disclaimer.addTo(this)
     }
