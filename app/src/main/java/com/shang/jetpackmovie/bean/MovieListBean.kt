@@ -48,7 +48,7 @@ data class MovieListBean(
         val video: Boolean,
         val vote_average: Double,
         val vote_count: Int
-    ) {
+    ) : IBaseMovie {
         fun convertToMovieEntity() = MovieFavorEntity(
             id,
             title,
@@ -56,5 +56,15 @@ data class MovieListBean(
             vote_average,
             release_date
         )
+
+        override fun getMovieID(): Int = id
+
+        override fun getMovieTitle(): String = title
+
+        override fun getPosterPath(): String = poster_path
+
+        override fun getVoteAverage(): Double = vote_average
+
+        override fun getReleaseDate(): String = release_date
     }
 }

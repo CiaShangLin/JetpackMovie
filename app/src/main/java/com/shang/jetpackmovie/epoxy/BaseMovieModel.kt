@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.google.android.material.imageview.ShapeableImageView
 import com.shang.jetpackmovie.R
+import com.shang.jetpackmovie.bean.IBaseMovie
 import com.shang.jetpackmovie.ui.VoteAverageView
 import com.shang.jetpackmovie.bean.MovieListBean
 import com.shang.jetpackmovie.ui.MovieFavoritesImageView
@@ -23,14 +24,14 @@ abstract class BaseMovieModel<VH : BaseMovieViewHolder> : EpoxyModelWithHolder<V
 
     interface MovieFavorListener {
         fun isFavorites(id: Int): Boolean
-        fun insert(data: MovieListBean.Result)
-        fun delete(data: MovieListBean.Result)
+        fun insert(data: IBaseMovie)
+        fun delete(data: IBaseMovie)
     }
 
     abstract fun gotoActivity(context: Context)
 
     @EpoxyAttribute
-    lateinit var data: MovieListBean.Result
+    lateinit var data: IBaseMovie
 
     @EpoxyAttribute(EpoxyAttribute.Option.DoNotHash)
     var itemClickListener: ((context: Context) -> Unit)? = null
@@ -41,10 +42,10 @@ abstract class BaseMovieModel<VH : BaseMovieViewHolder> : EpoxyModelWithHolder<V
     override fun bind(holder: VH) {
         super.bind(holder)
         data.let {
-            setCover(holder.ivCover, it.poster_path)
-            setTitle(holder.tvTitle, it.title)
-            setDay(holder.tvDay, it.release_date)
-            setVoteAverage(holder.voteAverageView, it.vote_average)
+            setCover(holder.ivCover, it.getPosterPath())
+            setTitle(holder.tvTitle, it.getMovieTitle())
+            setDay(holder.tvDay, it.getReleaseDate())
+            setVoteAverage(holder.voteAverageView, it.getVoteAverage())
             setOnClick(holder.vContent)
             setFavorites(holder.ivFavor)
         }
@@ -77,7 +78,7 @@ abstract class BaseMovieModel<VH : BaseMovieViewHolder> : EpoxyModelWithHolder<V
     }
 
     protected open fun setFavorites(ivFavor: MovieFavoritesImageView) {
-        var isFavorites = favorClickListener?.isFavorites(data.id) ?: false
+        var isFavorites = favorClickListener?.isFavorites(data.getMovieID()) ?: false
         ivFavor.setIsFavorites(isFavorites)
         ivFavor.setOnClickListener {
             if (isFavorites) {
