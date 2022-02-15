@@ -1,11 +1,14 @@
 package com.shang.jetpackmovie.activity.main
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.shang.jetpackmovie.R
 import com.shang.jetpackmovie.databinding.ActivityMainBinding
+import com.shang.jetpackmovie.globalData.UserSetting
+import com.shang.jetpackmovie.utils.LocaleHelper
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,4 +23,5 @@ class MainActivity : AppCompatActivity() {
         //底層其實實作了setOnItemSelectedListener
         mBinding.navView.setupWithNavController(navController)
     }
+
 }

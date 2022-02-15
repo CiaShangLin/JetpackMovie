@@ -74,4 +74,10 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="DevelopersTextView" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:autoLink">web</item>
+    </style>
+
 </resources>

@@ -28,7 +28,7 @@ class SettingController : EpoxyController() {
     override fun buildModels() {
 
         themeModel.addTo(this)
-        languageModel.addTo(this)
+//        languageModel.addTo(this)
         resolutionModel.addTo(this)
         developersModel.addTo(this)
         disclaimer.addTo(this)

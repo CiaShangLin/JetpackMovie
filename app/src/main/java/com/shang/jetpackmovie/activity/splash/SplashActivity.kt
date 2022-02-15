@@ -1,18 +1,26 @@
 package com.shang.jetpackmovie.activity.splash
 
 import android.animation.Animator
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.shang.jetpackmovie.activity.main.MainActivity
 import com.shang.jetpackmovie.databinding.ActivitySplashBinding
+import com.shang.jetpackmovie.globalData.UserSetting
+import com.shang.jetpackmovie.utils.LocaleHelper
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SplashActivity : AppCompatActivity() {
 
     private val viewModel by viewModel<SplashViewModel>()
     private lateinit var mBinding: ActivitySplashBinding
+
+//    override fun attachBaseContext(newBase: Context?) {
+//        super.attachBaseContext(newBase)
+//        LocaleHelper.update(this,UserSetting.language)
+//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
