@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="FullScreenDialog" parent="Theme.AppCompat.Dialog">
+    <!-- 這個沒辦法撐滿Dialog應該是因為他要顯示陰影的原因，要撐滿parent要用其他Dialog，但是有一些主題文字顏色就要注意   -->
+    <style name="FullScreenDialog" parent="ThemeOverlay.MaterialComponents.Dialog">
         <item name="windowNoTitle">true</item>
         <item name="android:windowIsFloating">true</item>
         <item name="android:windowFullscreen">true</item>
