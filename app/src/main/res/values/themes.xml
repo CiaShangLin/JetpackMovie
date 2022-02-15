@@ -24,7 +24,10 @@
         <!-- MovieItem的背景顏色 @drawable/style_epoxy_movie_model-->
         <item name="EpoxyMovieModelBackground">@color/white</item>
 
+        <!-- 電影未收藏圖案       -->
         <item name="MovieNoFavoritesResource">@drawable/icon_not_favor_light</item>
+
+        <item name="ChangeThemeDialogBackground">@color/white</item>
     </style>
 
     <style name="MainBottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
@@ -69,5 +72,9 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="SettingItemTextView" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
 
 </resources>

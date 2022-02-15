@@ -18,14 +18,15 @@ class SettingFragment : Fragment(R.layout.fragment_setting) {
 
     private val mBinding by viewBinding(FragmentSettingBinding::bind)
     private val mViewModel by viewModel<SettingViewModel>()
+    private val mController by lazy { SettingController() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        MODE_NIGHT_NO：強制不使用夜間主題
-//        MODE_NIGHT_YES：強制使用夜間主題
-//        MODE_NIGHT_AUTO：根據當前時間自動切換 夜間/非夜間主題
-//        MODE_NIGHT_FOLLOW_SYSTEM：預設設定，跟隨系統主題
-//        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+
+
+
+        mBinding.rvSetting.setControllerAndBuildModels(mController)
+        mBinding.rvSetting.addItemDecoration(SettingDecoration(requireContext()))
     }
 }

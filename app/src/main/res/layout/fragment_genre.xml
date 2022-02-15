@@ -14,10 +14,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.shang.jetpackmovie.MovieRefreshHeader
+        <com.shang.jetpackmovie.ui.MovieRefreshHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-        </com.shang.jetpackmovie.MovieRefreshHeader>
+        </com.shang.jetpackmovie.ui.MovieRefreshHeader>
 
         <com.airbnb.epoxy.EpoxyRecyclerView
             android:id="@+id/rvGenre"
@@ -29,10 +29,10 @@
 <!--            android:layout_height="wrap_content">-->
 
 <!--        </com.scwang.smart.refresh.footer.ClassicsFooter>-->
-        <com.shang.jetpackmovie.MovieRefreshFooter
+        <com.shang.jetpackmovie.ui.MovieRefreshFooter
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-        </com.shang.jetpackmovie.MovieRefreshFooter>
+        </com.shang.jetpackmovie.ui.MovieRefreshFooter>
 
     </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 

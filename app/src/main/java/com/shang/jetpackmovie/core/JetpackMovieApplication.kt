@@ -2,9 +2,11 @@ package com.shang.jetpackmovie.core
 
 import android.app.Application
 import android.content.Context
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.multidex.MultiDexApplication
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.shang.jetpackmovie.globalData.UserSetting
 import com.shang.jetpackmovie.room.MovieDatabase
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -21,6 +23,7 @@ class JetpackMovieApplication : MultiDexApplication() {
         super.onCreate()
 
         context = this
+        AppCompatDelegate.setDefaultNightMode(UserSetting.theme)
 
         startKoin {
             androidLogger()
@@ -30,6 +33,7 @@ class JetpackMovieApplication : MultiDexApplication() {
                 networkModule,
                 homeViewModelModule,
                 favorViewModelModule,
+                settingViewModel,
                 splashViewModelModule,
                 genresViewModule
             )

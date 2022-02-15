@@ -3,6 +3,7 @@
     <attr name="BottomLayerColor" format="color" />
     <attr name="EpoxyMovieModelBackground" format="color" />
     <attr name="MovieNoFavoritesResource" format="reference" />
+    <attr name="ChangeThemeDialogBackground" format="color" />
 
 
     <declare-styleable name="MovieFavoritesImageView">

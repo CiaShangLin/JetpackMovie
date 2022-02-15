@@ -13,6 +13,8 @@ import com.shang.jetpackmovie.fragment.genres.GenreRepository
 import com.shang.jetpackmovie.fragment.genres.GenreViewModel
 import com.shang.jetpackmovie.fragment.home.HomeRepository
 import com.shang.jetpackmovie.fragment.home.HomeViewModel
+import com.shang.jetpackmovie.fragment.setting.SettingRepository
+import com.shang.jetpackmovie.fragment.setting.SettingViewModel
 import com.shang.jetpackmovie.room.MovieDatabase
 import com.shang.jetpackmovie.room.dao.MovieFavorDao
 import okhttp3.OkHttpClient
@@ -86,6 +88,15 @@ val favorViewModelModule = module {
     }
     single {
         FavorRepository(get())
+    }
+}
+
+val settingViewModel = module {
+    viewModel{
+        SettingViewModel(get())
+    }
+    single {
+        SettingRepository()
     }
 }
 

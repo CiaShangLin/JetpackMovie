@@ -32,15 +32,17 @@ class MovieFavoritesImageView @JvmOverloads constructor(
             noFavoritesResource = it.getDrawable(
                 R.styleable.MovieFavoritesImageView_noFavoritesResource,
             )
-            Log.w("DEBUG","MovieFavoritesImageView 請設置noFavoritesResource")
+            if (noFavoritesResource == null) {
+                Log.w("DEBUG", "MovieFavoritesImageView 請設置noFavoritesResource")
+            }
         }
         setImageDrawable(noFavoritesResource)
     }
 
-    fun setIsFavorites(isFavorites:Boolean){
-        if(isFavorites){
+    fun setIsFavorites(isFavorites: Boolean) {
+        if (isFavorites) {
             setImageDrawable(isFavoritesResource)
-        }else{
+        } else {
             setImageDrawable(noFavoritesResource)
         }
     }

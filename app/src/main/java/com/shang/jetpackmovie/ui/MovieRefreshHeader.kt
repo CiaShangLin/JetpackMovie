@@ -1,4 +1,4 @@
-package com.shang.jetpackmovie
+package com.shang.jetpackmovie.ui
 
 import android.content.Context
 import android.util.AttributeSet
@@ -6,21 +6,22 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.airbnb.lottie.LottieAnimationView
-import com.scwang.smart.refresh.layout.api.RefreshFooter
+import com.scwang.smart.refresh.layout.api.RefreshHeader
 import com.scwang.smart.refresh.layout.api.RefreshKernel
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.constant.RefreshState
 import com.scwang.smart.refresh.layout.constant.SpinnerStyle
+import com.shang.jetpackmovie.R
 
-class MovieRefreshFooter @JvmOverloads constructor(
+class MovieRefreshHeader @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
-) : RefreshFooter, ConstraintLayout(context, attrs, defStyleAttr) {
+) : ConstraintLayout(context, attrs, defStyleAttr), RefreshHeader {
 
     private val layout: View
     private val refreshLottie: LottieAnimationView
 
     init {
-        layout = LayoutInflater.from(context).inflate(R.layout.movie_refresh_footer, this)
+        layout = LayoutInflater.from(context).inflate(R.layout.movie_refresh_header, this)
         refreshLottie = findViewById(R.id.refreshLottie)
     }
 
@@ -30,7 +31,7 @@ class MovieRefreshFooter @JvmOverloads constructor(
         newState: RefreshState
     ) {
         when(newState){
-            RefreshState.PullUpToLoad->{
+            RefreshState.PullDownToRefresh->{
                 refreshLottie.playAnimation()
             }
         }
@@ -59,7 +60,6 @@ class MovieRefreshFooter @JvmOverloads constructor(
     }
 
     override fun onReleased(refreshLayout: RefreshLayout, height: Int, maxDragHeight: Int) {
-
     }
 
     override fun onStartAnimator(refreshLayout: RefreshLayout, height: Int, maxDragHeight: Int) {
@@ -76,7 +76,4 @@ class MovieRefreshFooter @JvmOverloads constructor(
     }
 
     override fun isSupportHorizontalDrag(): Boolean = false
-
-
-    override fun setNoMoreData(noMoreData: Boolean): Boolean = noMoreData
 }

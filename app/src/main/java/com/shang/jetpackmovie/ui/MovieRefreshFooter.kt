@@ -1,30 +1,27 @@
-package com.shang.jetpackmovie
+package com.shang.jetpackmovie.ui
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.airbnb.lottie.Lottie
 import com.airbnb.lottie.LottieAnimationView
-import com.scwang.smart.refresh.header.ClassicsHeader
-import com.scwang.smart.refresh.layout.api.RefreshHeader
+import com.scwang.smart.refresh.layout.api.RefreshFooter
 import com.scwang.smart.refresh.layout.api.RefreshKernel
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.constant.RefreshState
 import com.scwang.smart.refresh.layout.constant.SpinnerStyle
-import java.lang.ref.WeakReference
+import com.shang.jetpackmovie.R
 
-class MovieRefreshHeader @JvmOverloads constructor(
+class MovieRefreshFooter @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
-) : ConstraintLayout(context, attrs, defStyleAttr), RefreshHeader {
+) : RefreshFooter, ConstraintLayout(context, attrs, defStyleAttr) {
 
     private val layout: View
     private val refreshLottie: LottieAnimationView
 
     init {
-        layout = LayoutInflater.from(context).inflate(R.layout.movie_refresh_header, this)
+        layout = LayoutInflater.from(context).inflate(R.layout.movie_refresh_footer, this)
         refreshLottie = findViewById(R.id.refreshLottie)
     }
 
@@ -34,7 +31,7 @@ class MovieRefreshHeader @JvmOverloads constructor(
         newState: RefreshState
     ) {
         when(newState){
-            RefreshState.PullDownToRefresh->{
+            RefreshState.PullUpToLoad->{
                 refreshLottie.playAnimation()
             }
         }
@@ -63,6 +60,7 @@ class MovieRefreshHeader @JvmOverloads constructor(
     }
 
     override fun onReleased(refreshLayout: RefreshLayout, height: Int, maxDragHeight: Int) {
+
     }
 
     override fun onStartAnimator(refreshLayout: RefreshLayout, height: Int, maxDragHeight: Int) {
@@ -79,4 +77,7 @@ class MovieRefreshHeader @JvmOverloads constructor(
     }
 
     override fun isSupportHorizontalDrag(): Boolean = false
+
+
+    override fun setNoMoreData(noMoreData: Boolean): Boolean = noMoreData
 }
