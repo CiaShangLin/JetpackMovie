@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">JetpackMovie</string>
+    <string name="app_name">火箭電影</string>
     <string name="title_home">首頁</string>
     <string name="title_favor">收藏</string>
     <string name="title_setting">設定</string>
