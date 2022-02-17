@@ -55,7 +55,7 @@ class GenreController(private val movieFavorListener: BaseMovieModel.MovieFavorL
 
         mData.forEachIndexed { index, result ->
             GenreMovieModel_()
-                .id(index)
+                .id(result.id)
                 .data(result)
                 .favorClickListener(movieFavorListener)
                 .addTo(this)

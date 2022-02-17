@@ -1,9 +1,11 @@
 package com.shang.jetpackmovie.epoxy
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.airbnb.epoxy.EpoxyAttribute
+import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
@@ -40,7 +42,6 @@ abstract class BaseMovieModel<VH : BaseMovieViewHolder> : EpoxyModelWithHolder<V
     var favorClickListener: MovieFavorListener? = null
 
     override fun bind(holder: VH) {
-        super.bind(holder)
         data.let {
             setCover(holder.ivCover, it.getPosterPath())
             setTitle(holder.tvTitle, it.getMovieTitle())
