@@ -12,4 +12,6 @@ abstract class FavorMovieModel: BaseMovieModel<FavorMovieViewHolder>() {
     override fun gotoActivity(context: Context) {
 
     }
+
+    override fun getViewType(): Int  = 100
 }

@@ -12,4 +12,6 @@ abstract class GenreMovieModel : BaseMovieModel<GenreMovieViewHolder>() {
     override fun gotoActivity(context: Context) {
 
     }
+
+    override fun getViewType(): Int  = 200
 }
