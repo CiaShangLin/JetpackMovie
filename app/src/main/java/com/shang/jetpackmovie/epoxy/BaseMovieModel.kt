@@ -23,6 +23,11 @@ import com.shang.jetpackmovie.ui.MovieFavoritesImageView
  * 子類如果要這樣繼成的話要複寫getViewType()，不然會丟出ClassCastException
  */
 //@EpoxyModelClass(layout = R.layout.epoxy_base_movie_model)
+
+enum class MovieType{
+    GENRE,
+    FAVOR
+}
 abstract class BaseMovieModel<VH : BaseMovieViewHolder> : EpoxyModelWithHolder<VH>() {
 
     interface MovieFavorListener {
