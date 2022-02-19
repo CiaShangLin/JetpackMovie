@@ -1,6 +1,7 @@
 package com.shang.jetpackmovie.bean
 
 import com.shang.jetpackmovie.room.entity.MovieFavorEntity
+import java.io.Serializable
 
 /**
  * 電影列表
@@ -49,13 +50,6 @@ data class MovieListBean(
         val vote_average: Double,
         val vote_count: Int
     ) : IBaseMovie {
-        fun convertToMovieEntity() = MovieFavorEntity(
-            id,
-            title,
-            poster_path,
-            vote_average,
-            release_date
-        )
 
         override fun getMovieID(): Int = id
 

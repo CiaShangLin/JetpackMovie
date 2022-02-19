@@ -9,6 +9,7 @@ class FavorMovieController(private val movieFavorListener: BaseMovieModel.MovieF
     private val mData  = mutableListOf<MovieFavorEntity>()
 
     fun setData(data:List<MovieFavorEntity>){
+        mData.clear()
         mData.addAll(data)
         requestModelBuild()
     }

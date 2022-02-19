@@ -10,6 +10,9 @@ import androidx.appcompat.widget.ThemeUtils
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.use
 import com.shang.jetpackmovie.R
+import com.shang.jetpackmovie.bean.IBaseMovie
+import com.shang.jetpackmovie.epoxy.BaseMovieModel
+import java.lang.ref.WeakReference
 
 /**
  * 電影收藏按鈕
@@ -19,8 +22,15 @@ class MovieFavoritesImageView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : androidx.appcompat.widget.AppCompatImageView(context, attrs, defStyleAttr) {
 
+    companion object {
+        private val set = mutableSetOf<MovieFavoritesImageView>()
+        private val isFavorSet = mutableSetOf<Int>()
+    }
+
     private var isFavoritesResource: Drawable? = null
     private var noFavoritesResource: Drawable? = null
+    private var _movieFavorListener: BaseMovieModel.MovieFavorListener? = null
+    var mData: IBaseMovie? = null
 
     init {
         context.obtainStyledAttributes(attrs, R.styleable.MovieFavoritesImageView).use {
@@ -39,11 +49,49 @@ class MovieFavoritesImageView @JvmOverloads constructor(
         setImageDrawable(noFavoritesResource)
     }
 
-    fun setIsFavorites(isFavorites: Boolean) {
+    private fun setIsFavorites(isFavorites: Boolean, id: Int) {
         if (isFavorites) {
+            isFavorSet.add(id)
             setImageDrawable(isFavoritesResource)
         } else {
+            isFavorSet.remove(id)
             setImageDrawable(noFavoritesResource)
+        }
+    }
+
+    fun init(baseMovie: IBaseMovie, movieFavorListener: BaseMovieModel.MovieFavorListener?) {
+        set.add(this)
+        mData = baseMovie
+        _movieFavorListener = movieFavorListener
+
+        var isFavorites = movieFavorListener?.isFavorites(baseMovie.getMovieID()) ?: false
+        setIsFavorites(isFavorites, baseMovie.getMovieID())
+
+        setOnClickListener {
+            if (isFavorites) {
+                movieFavorListener?.delete(baseMovie)
+            } else {
+                movieFavorListener?.insert(baseMovie)
+            }
+            isFavorites = !isFavorites
+            setIsFavorites(isFavorites, baseMovie.getMovieID())
+            update()
+        }
+
+    }
+
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        set.remove(this)
+    }
+
+    private fun update() {
+        set.forEach {
+            WeakReference(it).get()?.let {
+                val id = it.mData?.getMovieID() ?: return@let
+                val isFavorites = it._movieFavorListener?.isFavorites(id) ?: false
+                it.setIsFavorites(isFavorites, id)
+            }
         }
     }
 }

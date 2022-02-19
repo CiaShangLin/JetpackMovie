@@ -85,17 +85,18 @@ abstract class BaseMovieModel<VH : BaseMovieViewHolder> : EpoxyModelWithHolder<V
     }
 
     protected open fun setFavorites(ivFavor: MovieFavoritesImageView) {
-        var isFavorites = favorClickListener?.isFavorites(data.getMovieID()) ?: false
-        ivFavor.setIsFavorites(isFavorites)
-        ivFavor.setOnClickListener {
-            if (isFavorites) {
-                favorClickListener?.delete(data)
-            } else {
-                favorClickListener?.insert(data)
-            }
-            isFavorites = !isFavorites
-            ivFavor.setIsFavorites(isFavorites)
-        }
+//        var isFavorites = favorClickListener?.isFavorites(data.getMovieID()) ?: false
+//        ivFavor.setIsFavorites(isFavorites)
+//        ivFavor.setOnClickListener {
+//            if (isFavorites) {
+//                favorClickListener?.delete(data)
+//            } else {
+//                favorClickListener?.insert(data)
+//            }
+//            isFavorites = !isFavorites
+//            ivFavor.setIsFavorites(isFavorites)
+//        }
+        ivFavor.init(data,favorClickListener)
     }
 
 }

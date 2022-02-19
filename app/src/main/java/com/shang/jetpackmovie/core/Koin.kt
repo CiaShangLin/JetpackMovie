@@ -2,6 +2,8 @@ package com.shang.jetpackmovie.core
 
 import android.app.Application
 import androidx.room.Room
+import com.shang.jetpackmovie.activity.detail.DetailRepository
+import com.shang.jetpackmovie.activity.detail.DetailViewModel
 import com.shang.jetpackmovie.activity.splash.SplashRepository
 import com.shang.jetpackmovie.activity.splash.SplashViewModel
 import com.shang.jetpackmovie.api.AuthInterceptor
@@ -118,5 +120,15 @@ val genresViewModule = module {
 
     single {
         GenreRepository(get(),get())
+    }
+}
+
+val detailViewModel = module {
+    viewModel {
+        DetailViewModel(get())
+    }
+
+    single {
+        DetailRepository(get())
     }
 }

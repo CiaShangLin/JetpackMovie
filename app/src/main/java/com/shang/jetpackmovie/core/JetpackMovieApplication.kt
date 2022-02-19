@@ -38,7 +38,8 @@ class JetpackMovieApplication : MultiDexApplication() {
                 favorViewModelModule,
                 settingViewModel,
                 splashViewModelModule,
-                genresViewModule
+                genresViewModule,
+                detailViewModel
             )
         }
 

@@ -6,4 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".activity.detail.DetailActivity">
 
+    <com.shang.jetpackmovie.ui.MovieFavoritesImageView
+        android:id="@+id/ivFavor"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:isFavoritesResource="@drawable/icon_favor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:noFavoritesResource="?attr/MovieNoFavoritesResource" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
