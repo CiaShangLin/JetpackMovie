@@ -1,12 +1,9 @@
 package com.shang.jetpackmovie.ui
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.util.Log
-import androidx.appcompat.content.res.AppCompatResources
-import androidx.appcompat.widget.ThemeUtils
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.use
 import com.shang.jetpackmovie.R
@@ -23,7 +20,7 @@ class MovieFavoritesImageView @JvmOverloads constructor(
 ) : androidx.appcompat.widget.AppCompatImageView(context, attrs, defStyleAttr) {
 
     companion object {
-        private val set = mutableSetOf<MovieFavoritesImageView>()
+        private val tempImageViewSet = mutableSetOf<MovieFavoritesImageView>()
         private val isFavorSet = mutableSetOf<Int>()
     }
 
@@ -60,7 +57,7 @@ class MovieFavoritesImageView @JvmOverloads constructor(
     }
 
     fun init(baseMovie: IBaseMovie, movieFavorListener: BaseMovieModel.MovieFavorListener?) {
-        set.add(this)
+        tempImageViewSet.add(this)
         mData = baseMovie
         _movieFavorListener = movieFavorListener
 
@@ -81,12 +78,14 @@ class MovieFavoritesImageView @JvmOverloads constructor(
     }
 
     override fun onDetachedFromWindow() {
+        _movieFavorListener = null
+        mData = null
+        tempImageViewSet.remove(this)
         super.onDetachedFromWindow()
-        set.remove(this)
     }
 
     private fun update() {
-        set.forEach {
+        tempImageViewSet.forEach {
             WeakReference(it).get()?.let {
                 val id = it.mData?.getMovieID() ?: return@let
                 val isFavorites = it._movieFavorListener?.isFavorites(id) ?: false
