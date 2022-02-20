@@ -4,7 +4,7 @@ package com.shang.jetpackmovie.bean
  * 電影詳細內頁
  *
  */
-data class MovieBean(
+data class MovieDetailBean(
     val adult: Boolean,
     val backdrop_path: String,
     val belongs_to_collection: Any,

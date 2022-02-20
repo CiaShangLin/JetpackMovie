@@ -4,4 +4,6 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <dimen name="epoxy_movie_model_corner">4dp</dimen>
+
+    <dimen name="detail_toolbar_height">44dp</dimen>
 </resources>

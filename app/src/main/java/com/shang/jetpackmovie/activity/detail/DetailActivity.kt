@@ -15,39 +15,38 @@ import com.shang.jetpackmovie.ui.MovieFavoritesImageView
 import com.shang.jetpackmovie.ui.viewBinding
 import org.koin.android.compat.ViewModelCompat.viewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 
 class DetailActivity : AppCompatActivity() {
 
     companion object {
-        fun start(context: Context, movie: BaseMovieBean) {
+        private const val ID = "ID"
+        fun start(context: Context, id: Int) {
             val intent = Intent(context, DetailActivity::class.java)
-            intent.putExtra("movie", movie)
+            intent.putExtra(ID, id)
             context.startActivity(intent)
         }
     }
 
 
-    private lateinit var mBinding : ActivityDetailBinding
-    private val mViewModel by viewModel<DetailViewModel>()
+    private lateinit var mBinding: ActivityDetailBinding
+    private val _id by lazy { intent.getIntExtra(ID, -1) }
+    private val mViewModel by viewModel<DetailViewModel>{ parametersOf(_id)}
     private val mDetailController by lazy { DetailController() }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
 
-        val movie = intent.getSerializableExtra("movie") as BaseMovieBean?
-        val list = mutableListOf<IBaseMovie>()
-        for(i in 0..9){
-            list.add(movie!!)
-        }
-
         mBinding.rvDetail.layoutManager = LinearLayoutManager(this)
         mBinding.rvDetail.setControllerAndBuildModels(mDetailController)
-        mDetailController.setData(list)
 
-        mBinding.toolbar.title = "123"
 
+        mViewModel.getMovieDetail()
+        mViewModel.getMovieActor()
+        mViewModel.getMovieRecommendations()
     }
 }

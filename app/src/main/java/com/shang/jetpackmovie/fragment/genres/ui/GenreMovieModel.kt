@@ -13,8 +13,8 @@ import com.shang.jetpackmovie.epoxy.MovieType
 abstract class GenreMovieModel : BaseMovieModel<GenreMovieViewHolder>() {
 
     override fun gotoActivity(context: Context) {
-        DetailActivity.start(context, BaseMovieBean.convert(data))
+        DetailActivity.start(context, data.getMovieID())
     }
 
-    override fun getViewType(): Int  = MovieType.GENRE.ordinal
+    override fun getViewType(): Int = MovieType.GENRE.ordinal
 }

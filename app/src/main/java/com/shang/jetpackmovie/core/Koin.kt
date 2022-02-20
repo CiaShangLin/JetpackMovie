@@ -94,7 +94,7 @@ val favorViewModelModule = module {
 }
 
 val settingViewModel = module {
-    viewModel{
+    viewModel {
         SettingViewModel(get())
     }
     single {
@@ -119,16 +119,16 @@ val genresViewModule = module {
 
 
     single {
-        GenreRepository(get(),get())
+        GenreRepository(get(), get())
     }
 }
 
 val detailViewModel = module {
-    viewModel {
-        DetailViewModel(get())
+    viewModel {parameters ->
+        DetailViewModel(parameters.get(),get())
     }
 
     single {
-        DetailRepository(get())
+        DetailRepository(get(), get())
     }
 }

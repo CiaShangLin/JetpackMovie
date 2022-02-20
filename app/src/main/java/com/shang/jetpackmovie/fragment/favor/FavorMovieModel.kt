@@ -14,7 +14,7 @@ import com.shang.jetpackmovie.fragment.genres.ui.GenreMovieViewHolder
 abstract class FavorMovieModel: BaseMovieModel<FavorMovieViewHolder>() {
 
     override fun gotoActivity(context: Context) {
-        DetailActivity.start(context,BaseMovieBean.convert(data))
+        DetailActivity.start(context,data.getMovieID())
     }
 
     override fun getViewType(): Int  = MovieType.FAVOR.ordinal

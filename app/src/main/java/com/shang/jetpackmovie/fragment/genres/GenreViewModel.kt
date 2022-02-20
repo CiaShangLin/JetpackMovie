@@ -1,10 +1,8 @@
 package com.shang.jetpackmovie.fragment.genres
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.shang.jetpackmovie.api.UiState
 import com.shang.jetpackmovie.bean.IBaseMovie
-import com.shang.jetpackmovie.bean.MovieBean
 import com.shang.jetpackmovie.bean.MovieGenreBean
 import com.shang.jetpackmovie.bean.MovieListBean
 import com.shang.jetpackmovie.epoxy.BaseMovieModel
