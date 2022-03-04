@@ -15,7 +15,8 @@ class MovieDecoration : RecyclerView.ItemDecoration() {
     ) {
         super.getItemOffsets(outRect, view, parent, state)
 
-        val position = parent.getChildLayoutPosition(view)
+        //使用LayoutPosition在移除時會導致position異常
+        val position = parent.getChildAdapterPosition(view)
         if (position == 0 || position == 1) {
             outRect.bottom = 8.dp2px(parent.context)
             outRect.top = 16.dp2px(parent.context)
