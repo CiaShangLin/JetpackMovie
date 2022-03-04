@@ -2,42 +2,46 @@ package com.shang.jetpackmovie.activity.detail
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.shang.jetpackmovie.bean.IBaseMovie
+import com.shang.jetpackmovie.bean.MovieDetailBean
 import com.shang.jetpackmovie.epoxy.BaseMovieModel
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 class DetailViewModel(private val id: Int, private val detailRepository: DetailRepository) :
     ViewModel(),
     BaseMovieModel.MovieFavorListener {
 
+    val detailLiveData = liveData<MovieDetailBean> {
+        val movieDetail = detailRepository.getMovieDetail(id)
+        val movieActor = detailRepository.getMovieActor(id)
+        val movieRecommendations = detailRepository.getMovieRecommendations(id)
 
-    fun getMovieDetail(): Job {
-        return viewModelScope.launch {
-            val movieDetail = detailRepository.getMovieDetail(id)
-            Log.d("DEBUG", "movieDetail.toString()")
-        }
+        emit(movieDetail)
     }
 
-    fun getMovieActor(): Job {
-        return viewModelScope.launch {
-            val movieActor = detailRepository.getMovieActor(id)
-            Log.d("DEBUG", "movieActor.toString()")
-        }
-    }
+//    init {
+//        viewModelScope.launch {
+//            flow<Int> {
+//                val movieDetail = async {
+//
+//                    detailRepository.getMovieDetail(id)
+//                }
+//
+//                val movieActor = async {  detailRepository.getMovieActor(id)}
+//
+//                emit(0)
+//            }.collect {
+//                Log.d("DEBUG","$it")
+//            }
+//        }
+//    }
 
-    fun getMovieRecommendations(): Job {
-        return viewModelScope.launch {
-            val movieRecommendations=detailRepository.getMovieRecommendations(id)
-            Log.d("DEBUG","movieRecommendations.toString()")
-        }
-    }
 
     override fun isFavorites(id: Int): Boolean = detailRepository.isFavorites(id)
 

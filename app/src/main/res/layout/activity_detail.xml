@@ -28,7 +28,9 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
+                    android:id="@+id/ivPoster"
                     android:layout_width="0dp"
+                    android:scaleType="fitXY"
                     android:layout_height="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintDimensionRatio="5:7"
@@ -44,7 +46,7 @@
                 android:layout_height="@dimen/detail_toolbar_height"
                 app:navigationIcon="@drawable/icon_back"
                 app:title="蜘蛛人"
-                app:titleTextColor="@color/black">
+                app:titleTextColor="@color/white">
             </androidx.appcompat.widget.Toolbar>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>

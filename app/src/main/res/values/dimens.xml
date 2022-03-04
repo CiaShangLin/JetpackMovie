@@ -6,4 +6,6 @@
     <dimen name="epoxy_movie_model_corner">4dp</dimen>
 
     <dimen name="detail_toolbar_height">44dp</dimen>
+
+    <dimen name="actor_background_corner">8dp</dimen>
 </resources>
