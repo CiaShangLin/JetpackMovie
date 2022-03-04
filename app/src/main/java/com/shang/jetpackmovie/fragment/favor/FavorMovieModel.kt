@@ -10,7 +10,7 @@ import com.shang.jetpackmovie.epoxy.BaseMovieModel
 import com.shang.jetpackmovie.epoxy.MovieType
 import com.shang.jetpackmovie.fragment.genres.ui.GenreMovieViewHolder
 
-@EpoxyModelClass(layout = R.layout.epoxy_base_movie_model)
+@EpoxyModelClass(layout = R.layout.epoxy_base_movie_model,useLayoutOverloads = true)
 abstract class FavorMovieModel: BaseMovieModel<FavorMovieViewHolder>() {
 
     override fun gotoActivity(context: Context) {

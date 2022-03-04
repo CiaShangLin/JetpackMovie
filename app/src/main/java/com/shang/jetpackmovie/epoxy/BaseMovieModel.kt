@@ -20,14 +20,8 @@ import com.shang.jetpackmovie.ui.MovieFavoritesImageView
  * @EpoxyModelClass當有這個註解的時候不能使用泛型,因為他會產出_的class他是new不出泛型的class
  * 可以泛型ViewHolder但是不能泛型其他的,官方好像不支援泛型其他的樣子,要馬就是寫個介面然後自己強轉
  * BaseMovieModel設定為給子類繼承可以不用寫@EpoxyModelClass，但是子類一定要寫
- * 子類如果要這樣繼成的話要複寫getViewType()，不然會丟出ClassCastException
  */
 //@EpoxyModelClass(layout = R.layout.epoxy_base_movie_model)
-
-enum class MovieType{
-    GENRE,
-    FAVOR
-}
 abstract class BaseMovieModel<VH : BaseMovieViewHolder> : EpoxyModelWithHolder<VH>() {
 
     interface MovieFavorListener {
@@ -85,17 +79,6 @@ abstract class BaseMovieModel<VH : BaseMovieViewHolder> : EpoxyModelWithHolder<V
     }
 
     protected open fun setFavorites(ivFavor: MovieFavoritesImageView) {
-//        var isFavorites = favorClickListener?.isFavorites(data.getMovieID()) ?: false
-//        ivFavor.setIsFavorites(isFavorites)
-//        ivFavor.setOnClickListener {
-//            if (isFavorites) {
-//                favorClickListener?.delete(data)
-//            } else {
-//                favorClickListener?.insert(data)
-//            }
-//            isFavorites = !isFavorites
-//            ivFavor.setIsFavorites(isFavorites)
-//        }
         ivFavor.init(data,favorClickListener)
     }
 
