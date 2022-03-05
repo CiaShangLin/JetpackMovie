@@ -18,4 +18,5 @@
 
     <string name="chinese">中文</string>
     <string name="english">English</string>
+    <string name="summary">概要</string>
 </resources>

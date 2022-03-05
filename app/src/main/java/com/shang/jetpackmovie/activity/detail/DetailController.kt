@@ -1,9 +1,13 @@
 package com.shang.jetpackmovie.activity.detail
 
+import com.airbnb.epoxy.AutoModel
 import com.airbnb.epoxy.EpoxyController
 import com.shang.jetpackmovie.bean.IBaseMovie
 
 class DetailController: EpoxyController() {
+
+    @AutoModel
+    lateinit var contentModel: ContentModel_
 
     private var mData = mutableListOf<IBaseMovie>()
 
@@ -13,12 +17,8 @@ class DetailController: EpoxyController() {
     }
 
     override fun buildModels() {
-        mData.forEachIndexed { index, iBaseMovie ->
-            DetailModel_()
-                .id(index)
-                .data(iBaseMovie)
-                .addTo(this)
-        }
+        contentModel.addTo(this)
+
 
 
     }
