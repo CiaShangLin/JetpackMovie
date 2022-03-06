@@ -17,12 +17,17 @@ class DetailViewModel(private val id: Int, private val detailRepository: DetailR
     ViewModel(),
     BaseMovieModel.MovieFavorListener {
 
-    val detailLiveData = liveData<MovieDetailBean> {
+    val detailLiveData = liveData {
         val movieDetail = detailRepository.getMovieDetail(id)
-        val movieActor = detailRepository.getMovieActor(id)
+
         val movieRecommendations = detailRepository.getMovieRecommendations(id)
 
         emit(movieDetail)
+    }
+
+    val actorLiveData = liveData {
+        val movieActor = detailRepository.getMovieActor(id)
+        emit(movieActor)
     }
 
 //    init {

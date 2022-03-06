@@ -9,4 +9,8 @@
         <item name="android:backgroundDimEnabled">false</item>
         <item name="android:windowIsTranslucent">true</item>
     </style>
+
+    <style name="concer">
+
+    </style>
 </resources>

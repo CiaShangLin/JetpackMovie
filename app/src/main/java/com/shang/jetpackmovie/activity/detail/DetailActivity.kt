@@ -45,22 +45,25 @@ class DetailActivity : AppCompatActivity() {
         setContentView(mBinding.root)
 
         mBinding.rvDetail.layoutManager = LinearLayoutManager(this)
-        mBinding.rvDetail.setControllerAndBuildModels(mDetailController)
+        mBinding.rvDetail.setController(mDetailController)
 
 
         mBinding.appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
             if(verticalOffset==0){
                 mBinding.toolbar.title=""
             }else if(verticalOffset==appBarLayout.totalScrollRange*-1){
-                mBinding.toolbar.title="蜘蛛人"
+                mBinding.toolbar.title="${mViewModel.detailLiveData.value?.title}"
             }
-
         })
         mViewModel.detailLiveData.observe(this) {
             Glide.with(this)
                 .load(it.poster_path)
                 .into(mBinding.ivPoster)
 
+            mDetailController.setDetailBean(it)
+        }
+        mViewModel.actorLiveData.observe(this){
+            mDetailController.setActorBean(it)
         }
     }
 }
