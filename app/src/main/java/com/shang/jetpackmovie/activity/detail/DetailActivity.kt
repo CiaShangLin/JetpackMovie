@@ -35,8 +35,8 @@ class DetailActivity : AppCompatActivity() {
 
     private lateinit var mBinding: ActivityDetailBinding
     private val _id by lazy { intent.getIntExtra(ID, -1) }
-    private val mViewModel by viewModel<DetailViewModel>{ parametersOf(_id)}
-    private val mDetailController by lazy { DetailController() }
+    private val mViewModel by viewModel<DetailViewModel> { parametersOf(_id) }
+    private val mDetailController by lazy { DetailController(mViewModel) }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,15 +44,18 @@ class DetailActivity : AppCompatActivity() {
         mBinding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
 
+        mBinding.toolbar.setNavigationOnClickListener {
+            finish()
+        }
+
         mBinding.rvDetail.layoutManager = LinearLayoutManager(this)
         mBinding.rvDetail.setController(mDetailController)
 
-
         mBinding.appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
-            if(verticalOffset==0){
-                mBinding.toolbar.title=""
-            }else if(verticalOffset==appBarLayout.totalScrollRange*-1){
-                mBinding.toolbar.title="${mViewModel.detailLiveData.value?.title}"
+            if (verticalOffset == 0) {
+                mBinding.toolbar.title = ""
+            } else if (verticalOffset == appBarLayout.totalScrollRange * -1) {
+                mBinding.toolbar.title = "${mViewModel.detailLiveData.value?.title}"
             }
         })
         mViewModel.detailLiveData.observe(this) {
@@ -62,8 +65,19 @@ class DetailActivity : AppCompatActivity() {
 
             mDetailController.setDetailBean(it)
         }
-        mViewModel.actorLiveData.observe(this){
+        mViewModel.actorLiveData.observe(this) {
             mDetailController.setActorBean(it)
         }
+        mViewModel.guessLikeLiveData.observe(this) {
+            mDetailController.setGuessLike(it)
+        }
+    }
+
+    private fun initView(){
+
+    }
+
+    private fun initViewModel(){
+
     }
 }

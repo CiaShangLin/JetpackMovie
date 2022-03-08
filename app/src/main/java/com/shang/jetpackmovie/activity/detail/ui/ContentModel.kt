@@ -1,11 +1,10 @@
-package com.shang.jetpackmovie.activity.detail
+package com.shang.jetpackmovie.activity.detail.ui
 
 import android.view.View
 import android.widget.TextView
 import com.airbnb.epoxy.*
 import com.shang.jetpackmovie.R
 import com.shang.jetpackmovie.bean.MovieDetailBean
-import org.w3c.dom.Text
 
 @EpoxyModelClass(layout = R.layout.epoxy_movie_content)
 abstract class ContentModel : EpoxyModelWithHolder<ContentModel.ContentViewHolder>() {
@@ -15,7 +14,7 @@ abstract class ContentModel : EpoxyModelWithHolder<ContentModel.ContentViewHolde
 
     override fun bind(holder: ContentViewHolder) {
         super.bind(holder)
-        holder.tvContent.text = data.homepage
+        holder.tvContent.text = data.overview
     }
 
 

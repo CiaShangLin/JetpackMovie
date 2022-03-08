@@ -19,15 +19,17 @@ class DetailViewModel(private val id: Int, private val detailRepository: DetailR
 
     val detailLiveData = liveData {
         val movieDetail = detailRepository.getMovieDetail(id)
-
-        val movieRecommendations = detailRepository.getMovieRecommendations(id)
-
         emit(movieDetail)
     }
 
     val actorLiveData = liveData {
         val movieActor = detailRepository.getMovieActor(id)
         emit(movieActor)
+    }
+
+    val guessLikeLiveData = liveData {
+        val movieRecommendations = detailRepository.getMovieRecommendations(id)
+        emit(movieRecommendations)
     }
 
 //    init {

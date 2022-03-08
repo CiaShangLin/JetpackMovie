@@ -10,7 +10,10 @@
         <item name="android:windowIsTranslucent">true</item>
     </style>
 
-    <style name="concer">
-
+    <style name="actorRoundedCorner" parent="">
+        <item name="cornerFamilyTopRight">rounded</item>
+        <item name="cornerSizeTopRight">@dimen/epoxy_movie_model_corner</item>
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cornerSizeTopLeft">@dimen/epoxy_movie_model_corner</item>
     </style>
 </resources>

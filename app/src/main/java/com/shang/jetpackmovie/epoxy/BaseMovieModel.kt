@@ -1,11 +1,9 @@
 package com.shang.jetpackmovie.epoxy
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.airbnb.epoxy.EpoxyAttribute
-import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
@@ -13,7 +11,6 @@ import com.google.android.material.imageview.ShapeableImageView
 import com.shang.jetpackmovie.R
 import com.shang.jetpackmovie.bean.IBaseMovie
 import com.shang.jetpackmovie.ui.VoteAverageView
-import com.shang.jetpackmovie.bean.MovieListBean
 import com.shang.jetpackmovie.ui.MovieFavoritesImageView
 
 /**
@@ -43,6 +40,7 @@ abstract class BaseMovieModel<VH : BaseMovieViewHolder> : EpoxyModelWithHolder<V
 
     override fun bind(holder: VH) {
         data.let {
+            setSite(holder)
             setCover(holder.ivCover, it.getPosterPath())
             setTitle(holder.tvTitle, it.getMovieTitle())
             setDay(holder.tvDay, it.getReleaseDate())
@@ -79,7 +77,10 @@ abstract class BaseMovieModel<VH : BaseMovieViewHolder> : EpoxyModelWithHolder<V
     }
 
     protected open fun setFavorites(ivFavor: MovieFavoritesImageView) {
-        ivFavor.init(data,favorClickListener)
+        ivFavor.init(data, favorClickListener)
     }
 
+    protected open fun setSite(holder: VH) {
+        // change ui constraint
+    }
 }

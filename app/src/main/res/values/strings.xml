@@ -19,4 +19,6 @@
     <string name="chinese">中文</string>
     <string name="english">English</string>
     <string name="summary">概要</string>
+    <string name="cast">主要演員</string>
+    <string name="guess_like">猜你喜歡</string>
 </resources>

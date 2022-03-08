@@ -20,4 +20,6 @@
     <string name="chinese">中文</string>
     <string name="english">English</string>
     <string name="summary">Summary</string>
+    <string name="cast">Cast</string>
+    <string name="guess_like">guess_like</string>
 </resources>

@@ -5,7 +5,7 @@
     android:id="@+id/vContent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/style_white_rectangle_8dp_corner"
+    android:background="@drawable/style_white_rectangle_4dp_corner"
     android:elevation="4dp">
 
     <com.google.android.material.imageview.ShapeableImageView
@@ -13,11 +13,11 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="fitXY"
-        app:shapeAppearanceOverlay=""
         app:layout_constraintDimensionRatio="138:175"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/actorRoundedCorner"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -28,15 +28,14 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:ellipsize="end"
-        android:maxLines="2"
-        android:text="TextView"
+        android:maxLines="1"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/ivCover"
         app:layout_constraintStart_toStartOf="@+id/ivCover"
         app:layout_constraintTop_toBottomOf="@+id/ivCover"
-        tools:text="Natsuki Hanae" />
+        tools:text="Name" />
 
     <TextView
         android:id="@+id/tvCharacter"
@@ -45,13 +44,12 @@
         android:layout_marginTop="4dp"
         android:layout_marginBottom="16dp"
         android:ellipsize="end"
-        android:maxLines="2"
-        android:text="TextView"
+        android:maxLines="1"
         android:textColor="@color/black_3c3c3c"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/tvName"
         app:layout_constraintStart_toStartOf="@+id/tvName"
         app:layout_constraintTop_toBottomOf="@+id/tvName"
-        tools:text="Tanjirō Kamado" />
+        tools:text="Character" />
 </androidx.constraintlayout.widget.ConstraintLayout>
