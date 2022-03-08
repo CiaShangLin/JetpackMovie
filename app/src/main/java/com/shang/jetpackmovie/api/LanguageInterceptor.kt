@@ -9,13 +9,14 @@ class LanguageInterceptor : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         var request = chain.request()
-        val url = request.url.newBuilder().addQueryParameter("language",Locale.getDefault().language).build()
+        val url = request.url.newBuilder().addQueryParameter("language", getLanguage()).build()
         request = request.newBuilder().url(url).build()
         return chain.proceed(request)
     }
 
-    fun getLanguage() = when(Locale.getDefault().language) {
-        Locale.CHINESE.language -> "zh-TW"
+    private fun getLanguage() = when (Locale.getDefault().language) {
+        Locale.TAIWAN.language -> "zh-TW"
+        Locale.CHINA.language -> "zh"
         Locale.ENGLISH.language -> "en-US"
         else -> "zh-TW"
     }

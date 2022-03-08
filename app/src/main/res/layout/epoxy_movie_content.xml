@@ -18,17 +18,15 @@
 
     <TextView
         android:id="@+id/tvContent"
+        style="@style/DetailContentTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:lineHeight="24sp"
-        android:text="TextView"
-        android:textColor="@color/black"
-        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/tvSummary"
-        app:layout_constraintTop_toBottomOf="@+id/tvSummary" />
+        app:layout_constraintTop_toBottomOf="@+id/tvSummary"
+        tools:text="內容" />
 </androidx.constraintlayout.widget.ConstraintLayout>
