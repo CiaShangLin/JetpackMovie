@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/coordinatorLayout"
     android:background="?attr/BottomLayerColor"
     tools:context=".activity.detail.DetailActivity">
 
@@ -55,6 +56,15 @@
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
+
+    <com.shang.jetpackmovie.ui.VoteAverageView
+        android:id="@+id/voteAverageView"
+        app:layout_anchorGravity="bottom|end"
+        app:layout_anchor="@id/collapsingToolbarLayout"
+        android:layout_marginEnd="8dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp">
+    </com.shang.jetpackmovie.ui.VoteAverageView>
 
     <com.airbnb.epoxy.EpoxyRecyclerView
         android:id="@+id/rvDetail"
