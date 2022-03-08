@@ -57,6 +57,7 @@ class DetailActivity : AppCompatActivity() {
             } else if (verticalOffset == appBarLayout.totalScrollRange * -1) {
                 mBinding.toolbar.title = "${mViewModel.detailLiveData.value?.title}"
             }
+            mBinding.voteAverageView.alpha = 1-(verticalOffset.toFloat() / (appBarLayout.totalScrollRange * -1))
         })
         mViewModel.detailLiveData.observe(this) {
             Glide.with(this)
