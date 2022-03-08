@@ -2,6 +2,7 @@ package com.shang.jetpackmovie.fragment.favor
 
 import com.airbnb.epoxy.EpoxyController
 import com.shang.jetpackmovie.epoxy.BaseMovieModel
+import com.shang.jetpackmovie.fragment.favor.ui.FavorMovieModel_
 import com.shang.jetpackmovie.room.entity.MovieFavorEntity
 
 class FavorMovieController(private val movieFavorListener: BaseMovieModel.MovieFavorListener): EpoxyController() {
