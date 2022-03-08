@@ -3,6 +3,7 @@ package com.shang.jetpackmovie.activity.detail.ui
 import android.content.Context
 import com.airbnb.epoxy.EpoxyModelClass
 import com.shang.jetpackmovie.R
+import com.shang.jetpackmovie.activity.detail.DetailActivity
 import com.shang.jetpackmovie.epoxy.BaseMovieModel
 import com.shang.jetpackmovie.epoxy.BaseMovieViewHolder
 
@@ -10,7 +11,7 @@ import com.shang.jetpackmovie.epoxy.BaseMovieViewHolder
 abstract class GuessLikeModel : BaseMovieModel<GuessLikeModel.GuessLikeViewHolder>() {
 
     override fun gotoActivity(context: Context) {
-
+        DetailActivity.start(context, data.getMovieID())
     }
 
     override fun setSite(holder: GuessLikeViewHolder) {

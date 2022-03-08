@@ -1,7 +1,6 @@
 package com.shang.jetpackmovie.activity.detail
 
 import com.airbnb.epoxy.AutoModel
-import com.airbnb.epoxy.Carousel
 import com.airbnb.epoxy.CarouselModel_
 import com.airbnb.epoxy.EpoxyController
 import com.shang.jetpackmovie.activity.detail.ui.ActorModel_
@@ -13,7 +12,7 @@ import com.shang.jetpackmovie.bean.ActorBean
 import com.shang.jetpackmovie.bean.MovieDetailBean
 import com.shang.jetpackmovie.bean.MovieListBean
 import com.shang.jetpackmovie.epoxy.BaseMovieModel
-import com.shang.jetpackmovie.utils.dp2px
+import com.shang.jetpackmovie.epoxy.NoSnapCarouselModel_
 
 class DetailController(private val movieFavorListener: BaseMovieModel.MovieFavorListener) : EpoxyController() {
 
@@ -80,8 +79,7 @@ class DetailController(private val movieFavorListener: BaseMovieModel.MovieFavor
             guessLikeList.add(model)
         }
 
-        Carousel.setDefaultGlobalSnapHelperFactory(null)
-        CarouselModel_()
+        NoSnapCarouselModel_()
             .id("guessLike")
             .models(guessLikeList)
             .hasFixedSize(true)
