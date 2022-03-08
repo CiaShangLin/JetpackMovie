@@ -13,7 +13,7 @@ interface MovieFavorDao {
     @Delete
     fun deleteMovieFavor(movieFavorEntity: MovieFavorEntity)
 
-    @Query("Select * From MovieFavorEntity")
+    @Query("Select * From MovieFavorEntity Order by timestamp DESC")
     fun getAllMovieFavor(): LiveData<List<MovieFavorEntity>>
 
     @Query("Select *  From MovieFavorEntity Where id = :id")

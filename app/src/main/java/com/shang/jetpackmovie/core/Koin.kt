@@ -17,6 +17,7 @@ import com.shang.jetpackmovie.fragment.home.HomeRepository
 import com.shang.jetpackmovie.fragment.home.HomeViewModel
 import com.shang.jetpackmovie.fragment.setting.SettingRepository
 import com.shang.jetpackmovie.fragment.setting.SettingViewModel
+import com.shang.jetpackmovie.room.MIGRATION_1_2
 import com.shang.jetpackmovie.room.MovieDatabase
 import com.shang.jetpackmovie.room.dao.MovieFavorDao
 import okhttp3.OkHttpClient
@@ -33,6 +34,7 @@ val roomModule = module {
         return Room
             .databaseBuilder(application, MovieDatabase::class.java, MovieDatabase.DB_NAME)
             .allowMainThreadQueries()
+            .addMigrations(MIGRATION_1_2)
             .build()
     }
 

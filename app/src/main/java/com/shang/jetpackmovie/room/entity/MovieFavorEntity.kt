@@ -12,17 +12,19 @@ data class MovieFavorEntity(
     val title: String,
     val poster_path: String,
     val vote_average: Double,
-    val release_date: String
+    val release_date: String,
+    val timestamp: Int
 ) : IBaseMovie {
 
-    companion object{
-        fun convert(data:IBaseMovie): MovieFavorEntity {
+    companion object {
+        fun convert(data: IBaseMovie): MovieFavorEntity {
             return MovieFavorEntity(
                 data.getMovieID(),
                 data.getMovieTitle(),
                 data.getPosterPath(),
                 data.getVoteAverage(),
-                data.getReleaseDate()
+                data.getReleaseDate(),
+                (System.currentTimeMillis()/1000).toInt()
             )
         }
     }
