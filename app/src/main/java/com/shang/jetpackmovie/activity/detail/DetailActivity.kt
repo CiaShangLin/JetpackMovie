@@ -44,6 +44,11 @@ class DetailActivity : AppCompatActivity() {
         mBinding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
 
+        initView()
+        initViewModel()
+    }
+
+    private fun initView() {
         mBinding.toolbar.setNavigationOnClickListener {
             finish()
         }
@@ -57,8 +62,12 @@ class DetailActivity : AppCompatActivity() {
             } else if (verticalOffset == appBarLayout.totalScrollRange * -1) {
                 mBinding.toolbar.title = "${mViewModel.detailLiveData.value?.title}"
             }
-            mBinding.voteAverageView.alpha = 1-(verticalOffset.toFloat() / (appBarLayout.totalScrollRange * -1))
+            mBinding.voteAverageView.alpha =
+                1 - (verticalOffset.toFloat() / (appBarLayout.totalScrollRange * -1))
         })
+    }
+
+    private fun initViewModel() {
         mViewModel.detailLiveData.observe(this) {
             Glide.with(this)
                 .load(it.poster_path)
@@ -72,13 +81,5 @@ class DetailActivity : AppCompatActivity() {
         mViewModel.guessLikeLiveData.observe(this) {
             mDetailController.setGuessLike(it)
         }
-    }
-
-    private fun initView(){
-
-    }
-
-    private fun initViewModel(){
-
     }
 }

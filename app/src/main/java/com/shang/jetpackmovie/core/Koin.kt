@@ -2,6 +2,7 @@ package com.shang.jetpackmovie.core
 
 import android.app.Application
 import androidx.room.Room
+import com.shang.jetpackmovie.activity.detail.DetailApiImp
 import com.shang.jetpackmovie.activity.detail.DetailRepository
 import com.shang.jetpackmovie.activity.detail.DetailViewModel
 import com.shang.jetpackmovie.activity.splash.SplashRepository
@@ -119,7 +120,6 @@ val genresViewModule = module {
         GenreViewModel(parameters.get(), get())
     }
 
-
     single {
         GenreRepository(get(), get())
     }
@@ -128,6 +128,10 @@ val genresViewModule = module {
 val detailViewModel = module {
     viewModel {parameters ->
         DetailViewModel(parameters.get(),get())
+    }
+
+    single {
+        DetailApiImp(get())
     }
 
     single {

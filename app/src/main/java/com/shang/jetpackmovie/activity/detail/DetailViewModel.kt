@@ -32,24 +32,6 @@ class DetailViewModel(private val id: Int, private val detailRepository: DetailR
         emit(movieRecommendations)
     }
 
-//    init {
-//        viewModelScope.launch {
-//            flow<Int> {
-//                val movieDetail = async {
-//
-//                    detailRepository.getMovieDetail(id)
-//                }
-//
-//                val movieActor = async {  detailRepository.getMovieActor(id)}
-//
-//                emit(0)
-//            }.collect {
-//                Log.d("DEBUG","$it")
-//            }
-//        }
-//    }
-
-
     override fun isFavorites(id: Int): Boolean = detailRepository.isFavorites(id)
 
     override fun insert(data: IBaseMovie) = detailRepository.insert(data)
