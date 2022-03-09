@@ -15,7 +15,7 @@
 
 ## Google Play
 
-## [Youtube Demo](https://github.com/CiaShangLin/JetpackMovie "Youtube Demo")
+## [Youtube Demo](https://youtu.be/eQPdxdwL8EQ "Youtube Demo")
 
 ## 心得
 - Koin<br>
