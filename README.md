@@ -11,6 +11,12 @@
 ##### 架構 : MVVM
 ##### 主題 : Light，Dark
 
+## Demo APK
+
+## Google Play
+
+## Youtube
+
 ## 心得
 - Koin<br>
   第一次使用DI確實是相當方便，簡化了許多注入的程式碼，尤其是Koin支援ViewModel，終於不用寫又臭又長的Factory真的爽，只是像有一些Adapter需要傳入Listener而Listener實作在ViewModel，如果使用Koin去產生Adapter這個時候會產生不同的ViewModel，可能Adapter只能使用傳入的方法。<br>
@@ -35,3 +41,7 @@
 
 - Navigation<br>
   Jetpack推出來管理Fragment切換用的Library，比較可惜的是目前這個小專案沒什麼用到，只有跟BottomNavigation配合使用，但是他在切換時好像都是用replace而且同樣的頁面在點擊他還是會再做一次，之後如果仔細操作可能要注意，還有在Fragment裡面使用的話會如何，可能要等到之後加入比較複雜的新功能才有機會了。<br>
+
+- Theme<br>
+  第一次實作可以切換主題的APP，不得不說滿麻煩的，各個區塊要用什麼顏色，文字要用什麼顏色真的麻煩，style和attr寫了一堆，可能真的要學預設的colorPrimary...之類的下去定義顏色，但是官網的教學也是有看沒有懂加上工程師基本上的顏色沒什麼感覺ㄏ，還有就是如果設置的背景是出圖的那就要每個主題都出一張可能會導致apk膨脹，所以主題這東西如果要做最好一開始就做中途才要加絕對累死。<br>
+
