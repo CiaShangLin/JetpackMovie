@@ -18,7 +18,7 @@ abstract class BaseFragment : Fragment() {
     protected val mID by lazy { arguments?.getInt(ID)!! }
     protected lateinit var rvVideo: RecyclerView
     protected abstract val adapter: BaseAdapter
-    protected abstract val viewModel: BaseViewModel
+    protected abstract val viewModel: BaseViewModel<*,*>
 
 
     override fun onCreateView(

@@ -1,6 +1,7 @@
 package com.shang.jetpackmovie.activity.children.Base
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -31,12 +32,12 @@ class MovieFactory(val application: Application, val id: Int) : ViewModelProvide
     }
 }
 
-abstract class BaseViewModel(
+abstract class BaseViewModel<A : ILoreMore<D>, D : IBaseMovie>(
     application: Application,
     val id: Int
-) : ViewModel() {
+) : ViewModel(), IBaseAdapter {
 
-    abstract fun getApi(): Observable<ILoreMore<IBaseMovie>>
+    abstract fun getApi(): Observable<A>
 
     protected val mMovieLiveData = MutableLiveData<UiState<List<IBaseMovie>>>()
     val movieLiveData: LiveData<UiState<List<IBaseMovie>>> = mMovieLiveData
@@ -50,30 +51,40 @@ abstract class BaseViewModel(
     }
 
     protected fun getMovie() {
+        Log.d("DEBUG","${mDisposable==null} ${mDisposable?.isDisposed}")
         if (mDisposable != null && mDisposable?.isDisposed == false) {
             return
         }
         getApi()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object :LoadMoreObserver<ILoreMore<IBaseMovie>>(){
+            .subscribe(object : LoadMoreObserver<A, D>() {
                 override fun start(d: Disposable) {
-                    mDisposable=d
-                }
-
-                override fun success(data: List<IBaseMovie>) {
-                    mDataList.addAll(data)
-                    mPage++
-                    mMovieLiveData.value= UiState.success(mDataList.map { it.clone() })
+                    mDisposable = d
                 }
 
                 override fun error(e: Throwable) {
-                   mMovieLiveData.value= UiState.failure()
+                    mMovieLiveData.value = UiState.failure()
+                    mDisposable?.dispose()
+                    mDisposable = null
                 }
 
                 override fun state(state: LoadMoreState) {
 
                 }
+
+                override fun success(data: List<D>) {
+                    mDataList.addAll(data)
+                    mPage++
+                    mMovieLiveData.value = UiState.success(mDataList.map { it.clone() })
+                    mDisposable?.dispose()
+                    mDisposable = null
+                }
             })
+    }
+
+    override fun loadMore() {
+        Log.d("DEBUG", "loadMore")
+        getMovie()
     }
 }

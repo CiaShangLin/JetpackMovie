@@ -18,7 +18,7 @@ class GenreFragment : BaseFragment() {
         }
     }
 
-    override val adapter by lazy { GenreAdapter() }
+    override val adapter by lazy { GenreAdapter(viewModel) }
     override val viewModel by lazy {
         ViewModelProvider(this, MovieFactory.create(requireActivity().application, mID))
             .get(GenreViewModel::class.java)

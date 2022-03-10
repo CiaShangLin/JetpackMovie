@@ -4,25 +4,25 @@ import com.shang.jetpackmovie.bean.IBaseMovie
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
 
-abstract class LoadMoreObserver<A:ILoreMore<out IBaseMovie>>: Observer<A> {
+abstract class LoadMoreObserver<I : ILoreMore<D>, D> : Observer<I> {
 
     abstract fun start(d: Disposable)
-    abstract fun success(data:List<IBaseMovie>)
+    abstract fun success(data: List<D>)
     abstract fun error(e: Throwable)
-    abstract fun state(state:LoadMoreState)
+    abstract fun state(state: LoadMoreState)
 
     override fun onSubscribe(d: Disposable) {
         state(LoadMoreState.START)
         start(d)
     }
 
-    override fun onNext(t: A) {
-        if(t.getIData().isNullOrEmpty() && t.getIPage()==0){
+    override fun onNext(t: I) {
+        if (t.getIData().isNullOrEmpty() && t.getIPage() == 0) {
             state(LoadMoreState.ERROR)
-        }else if(t.getIData().isNotEmpty() && t.getIPage()==0){
+        } else if (t.getIData().isNotEmpty() && t.getIPage() == 0) {
             state(LoadMoreState.NO_MORE)
             success(t.getIData())
-        }else{
+        } else {
             success(t.getIData())
         }
     }

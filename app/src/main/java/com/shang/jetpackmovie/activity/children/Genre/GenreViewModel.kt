@@ -9,13 +9,13 @@ import com.shang.jetpackmovie.bean.IBaseMovie
 import com.shang.jetpackmovie.bean.MovieListBean
 import io.reactivex.rxjava3.core.Observable
 
-class GenreViewModel(application: Application, id: Int) : BaseViewModel(application, id) {
-    override fun getApi(): Observable<ILoreMore<IBaseMovie>> {
+class GenreViewModel(application: Application, id: Int) : BaseViewModel<MovieListBean,MovieListBean.Result>(application, id) {
+    override fun getApi(): Observable<MovieListBean> {
         return ApiService.movieApi
             .getMovieSimilar(id, mPage)
             .map {
                 val json = it.string()
-                return@map Gson().fromJson(json, MovieListBean::class.java) as ILoreMore<IBaseMovie>
+                return@map Gson().fromJson(json, MovieListBean::class.java)
             }
     }
 }
