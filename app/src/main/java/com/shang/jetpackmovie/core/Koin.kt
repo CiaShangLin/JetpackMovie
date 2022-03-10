@@ -27,6 +27,7 @@ import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 val roomModule = module {
@@ -60,6 +61,7 @@ val networkModule = module {
             .baseUrl("https://api.themoviedb.org/3/")
             .addConverterFactory(GsonConverterFactory.create())
 //            .addConverterFactory(ScalarsConverterFactory.create())
+            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .client(get())
             .build()
     }
@@ -126,8 +128,8 @@ val genresViewModule = module {
 }
 
 val detailViewModel = module {
-    viewModel {parameters ->
-        DetailViewModel(parameters.get(),get())
+    viewModel { parameters ->
+        DetailViewModel(parameters.get(), get())
     }
 
     single {
