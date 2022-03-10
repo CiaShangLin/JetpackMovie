@@ -1,6 +1,7 @@
 package com.shang.jetpackmovie.api
 
 import com.shang.jetpackmovie.bean.*
+import io.reactivex.rxjava3.core.Observable
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.GET
@@ -35,4 +36,7 @@ interface MovieApi {
 
     @GET
     fun getPicture(@Url url: String): Call<ResponseBody>
+
+    @GET("movie/{id}/recommendations")
+    fun getMovieSimilar(@Path("id") id: Int,@Query("page") page: Int): Observable<ResponseBody>
 }

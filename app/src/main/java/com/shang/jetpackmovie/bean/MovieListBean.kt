@@ -1,5 +1,6 @@
 package com.shang.jetpackmovie.bean
 
+import com.shang.jetpackmovie.activity.children.Base.ILoreMore
 import com.shang.jetpackmovie.room.entity.MovieFavorEntity
 import java.io.Serializable
 
@@ -16,7 +17,7 @@ data class MovieListBean(
     val results: List<Result>,
     val total_pages: Int,
     val total_results: Int
-) {
+) : ILoreMore<MovieListBean.Result> {
 
     /**
      * @param adult 是否成人
@@ -60,5 +61,11 @@ data class MovieListBean(
         override fun getVoteAverage(): Double = vote_average
 
         override fun getReleaseDate(): String = release_date
+
+        override fun clone():IBaseMovie = copy()
     }
+
+    override fun getIPage(): Int = page
+
+    override fun getIData(): List<Result> = results
 }

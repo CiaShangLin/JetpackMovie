@@ -38,4 +38,6 @@ data class MovieFavorEntity(
     override fun getVoteAverage(): Double = vote_average
 
     override fun getReleaseDate(): String = release_date
+
+    override fun clone(): IBaseMovie = copy()
 }

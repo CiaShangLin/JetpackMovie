@@ -4,19 +4,10 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.android.material.appbar.AppBarLayout
-import com.shang.jetpackmovie.R
-import com.shang.jetpackmovie.bean.BaseMovieBean
-import com.shang.jetpackmovie.bean.IBaseMovie
-import com.shang.jetpackmovie.bean.MovieListBean
 import com.shang.jetpackmovie.databinding.ActivityDetailBinding
-import com.shang.jetpackmovie.fragment.favor.FavorViewModel
-import com.shang.jetpackmovie.ui.MovieFavoritesImageView
-import com.shang.jetpackmovie.ui.viewBinding
-import org.koin.android.compat.ViewModelCompat.viewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 

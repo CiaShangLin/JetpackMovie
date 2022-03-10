@@ -6,4 +6,5 @@ interface IBaseMovie {
     fun getPosterPath():String
     fun getVoteAverage():Double
     fun getReleaseDate():String
+    fun clone():IBaseMovie
 }
