@@ -1,8 +1,14 @@
 workflows:
   android:
     name: Hello world workflow android
+    environment:
+      groups:
+        - keystore_credentials
     scripts:
       - echo "Hello World!"
+      - script: |
+          echo $CM_KEYSTORE | base64 --decode > $CM_KEYSTORE_PATH
+
       - name : android test
         script: ./gradlew test
         test_report: app/build/test-results/**/*.xml
