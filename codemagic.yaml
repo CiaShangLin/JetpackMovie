@@ -1,5 +1,5 @@
 workflows:
-  hello-world:
+  android:
     name: Hello world workflow
     scripts:
       - echo "Hello World!"
