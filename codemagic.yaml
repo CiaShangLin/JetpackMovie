@@ -8,7 +8,7 @@ workflows:
         test_report: app/build/test-results/**/*.xml
 
       - name: android build
-        script: ./gradlew build
+        script:  ./gradlew assembleRelease
 
     artifacts:
       - app/build/outputs/**/**/*.apk
