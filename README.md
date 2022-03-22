@@ -13,7 +13,7 @@
 
 ## [Demo APK](https://github.com/CiaShangLin/JetpackMovie/blob/master/JetpackMovie.apk?raw=true "Demo APK")
 
-## Google Play
+## [Google Play](https://play.google.com/store/apps/details?id=com.shang.jetpackmovie "Google Play")
 
 ## [Youtube Demo](https://youtu.be/eQPdxdwL8EQ "Youtube Demo")
 
