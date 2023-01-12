@@ -17,6 +17,14 @@
 
 ## [Youtube Demo](https://youtu.be/eQPdxdwL8EQ "Youtube Demo")
 
+## Release note
+### v2.0
+1.升級compileSdk 33，targetSdk 33
+2.升級Kotlin 1.6.0
+3.升級Koin 3.2.2因為Kotlin升級的原因
+4.新增Firebase
+5.由於Kotlin升級導致Epoxy在綁定data時會拿取data class的hashCode，可能是資料有某個欄位是null導致拿取hashCode丟出NEP，所以data class的欄位都預設nullable。
+
 ## 心得
 - Koin<br>
   第一次使用DI確實是相當方便，簡化了許多注入的程式碼，尤其是Koin支援ViewModel，終於不用寫又臭又長的Factory真的爽，只是像有一些Adapter需要傳入Listener而Listener實作在ViewModel，如果使用Koin去產生Adapter這個時候會產生不同的ViewModel，可能Adapter只能使用傳入的方法。<br>
