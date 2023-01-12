@@ -14,6 +14,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "1093280606439-0gdmn5qn35tdm4r354mka2po1ojsp8p8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shang.jetpackmovie",
+            "certificate_hash": "9dd79e1b11eb779e81d6875a713a16b9c82d35c5"
+          }
+        },
+        {
+          "client_id": "1093280606439-savltbhpc3mvninagkgrmkr3m7h7ua0n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shang.jetpackmovie",
+            "certificate_hash": "1dadf9c901822e5d340d30d1595f822cac8ff153"
+          }
+        },
+        {
           "client_id": "1093280606439-0n9973kgo731drtno9nu6qap4ga172qr.apps.googleusercontent.com",
           "client_type": 3
         }
