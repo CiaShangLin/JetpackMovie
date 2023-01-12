@@ -35,30 +35,39 @@ data class MovieListBean(
      * @param vote_count 投票次數
      */
     data class Result(
-        val adult: Boolean,
-        val backdrop_path: String,
-        val genre_ids: List<Int>,
-        val id: Int,
-        val original_language: String,
-        val original_title: String,
-        val overview: String,
-        val popularity: Double,
-        val poster_path: String,
-        val release_date: String,
-        val title: String,
-        val video: Boolean,
-        val vote_average: Double,
-        val vote_count: Int
+        val adult: Boolean?,
+        val backdrop_path: String?,
+        val genre_ids: List<Int>?,
+        val id: Int?,
+        val original_language: String?,
+        val original_title: String?,
+        val overview: String?,
+        val popularity: Double?,
+        val poster_path: String?,
+        val release_date: String?,
+        val title: String?,
+        val video: Boolean?,
+        val vote_average: Double?,
+        val vote_count: Int?
     ) : IBaseMovie {
 
-        override fun getMovieID(): Int = id
+        override fun getMovieID(): Int = id?:-1
 
-        override fun getMovieTitle(): String = title
+        override fun getMovieTitle(): String = title?:""
 
-        override fun getPosterPath(): String = poster_path
+        override fun getPosterPath(): String = poster_path?:""
 
-        override fun getVoteAverage(): Double = vote_average
+        override fun getVoteAverage(): Double = vote_average?:0.0
 
-        override fun getReleaseDate(): String = release_date
+        override fun getReleaseDate(): String = release_date?:""
+
+        /**
+         * 當某個欄位是null時hashCode會丟出NEP導致Epoxy在綁定data時發生錯誤
+         * 解決方法
+         * 1.kotlin降低到1.4.0
+         * 2.所有欄位補上nullable
+         * 3.hashCode直接回傳id
+         */
+        //override fun hashCode(): Int = id
     }
 }
