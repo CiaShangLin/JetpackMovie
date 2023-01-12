@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1093280606439",
+    "project_id": "jetpackmovie",
+    "storage_bucket": "jetpackmovie.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1093280606439:android:d7b8193029061daa185a42",
+        "android_client_info": {
+          "package_name": "com.shang.jetpackmovie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1093280606439-0n9973kgo731drtno9nu6qap4ga172qr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXNhv0oynRvCY8SgKnSSKqkBZRg-vwzng"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1093280606439-0n9973kgo731drtno9nu6qap4ga172qr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
