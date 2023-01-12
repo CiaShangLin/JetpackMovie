@@ -19,11 +19,11 @@
 
 ## Release note
 ### v2.0
-1.升級compileSdk 33，targetSdk 33
-2.升級Kotlin 1.6.0
-3.升級Koin 3.2.2因為Kotlin升級的原因
-4.新增Firebase
-5.由於Kotlin升級導致Epoxy在綁定data時會拿取data class的hashCode，可能是資料有某個欄位是null導致拿取hashCode丟出NEP，所以data class的欄位都預設nullable。
+1.升級compileSdk 33，targetSdk 33<br>
+2.升級Kotlin 1.6.0<br>
+3.升級Koin 3.2.2因為Kotlin升級的原因<br>
+4.新增Firebase<br>
+5.由於Kotlin升級導致Epoxy在綁定data時會拿取data class的hashCode，可能是資料有某個欄位是null導致拿取hashCode丟出NEP，所以data class的欄位都預設nullable。<br>
 
 ## 心得
 - Koin<br>
