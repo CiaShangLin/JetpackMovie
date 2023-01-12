@@ -31,19 +31,19 @@ class SplashActivity : AppCompatActivity() {
 
         })
         mBinding.splash.addAnimatorListener(object : Animator.AnimatorListener {
-            override fun onAnimationStart(animation: Animator?) {
+            override fun onAnimationStart(animation: Animator) {
 
             }
 
-            override fun onAnimationEnd(animation: Animator?) {
+            override fun onAnimationEnd(animation: Animator) {
 
             }
 
-            override fun onAnimationCancel(animation: Animator?) {
+            override fun onAnimationCancel(animation: Animator) {
 
             }
 
-            override fun onAnimationRepeat(animation: Animator?) {
+            override fun onAnimationRepeat(animation: Animator) {
                 if (viewModel.liveData.value != null) {
                     mBinding.splash.cancelAnimation()
                     val intent = Intent(this@SplashActivity, MainActivity::class.java)
