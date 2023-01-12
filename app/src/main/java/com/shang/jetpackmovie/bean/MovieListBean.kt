@@ -1,8 +1,5 @@
 package com.shang.jetpackmovie.bean
 
-import com.shang.jetpackmovie.room.entity.MovieFavorEntity
-import java.io.Serializable
-
 /**
  * 電影列表
  *

@@ -1,11 +1,9 @@
 package com.shang.jetpackmovie.fragment.genres.ui
 
 import android.content.Context
-import android.util.Log
 import com.airbnb.epoxy.EpoxyModelClass
 import com.shang.jetpackmovie.R
 import com.shang.jetpackmovie.activity.detail.DetailActivity
-import com.shang.jetpackmovie.bean.BaseMovieBean
 import com.shang.jetpackmovie.epoxy.BaseMovieModel
 import com.shang.jetpackmovie.epoxy.BaseMovieViewHolder
 import com.shang.jetpackmovie.epoxy.MovieType
