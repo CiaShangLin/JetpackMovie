@@ -1,6 +1,8 @@
 package com.shang.jetpackmovie.fragment.genres
 
+import android.util.Log
 import androidx.lifecycle.*
+import com.google.gson.Gson
 import com.shang.jetpackmovie.api.UiState
 import com.shang.jetpackmovie.bean.IBaseMovie
 import com.shang.jetpackmovie.bean.MovieGenreBean
@@ -36,12 +38,16 @@ class GenreViewModel(
     }
 
     fun loadMore() {
+        if(_genreLiveData.value is UiState.Loading){
+            return
+        }
         _path++
         getMovieListApi()
     }
 
     private fun getMovieListApi() {
         viewModelScope.launch {
+            _genreLiveData.value = UiState.loading()
             try {
                 delay(1000)
                 val bean = genreRepository.getMovieGenreDetail("${genre?.id}", _path)
