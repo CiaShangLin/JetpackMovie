@@ -10,6 +10,7 @@ import com.shang.jetpackmovie.databinding.ActivityMainBinding
 import com.shang.jetpackmovie.globalData.UserSetting
 import com.shang.jetpackmovie.utils.LocaleHelper
 
+//branch Compose
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mBinding: ActivityMainBinding
