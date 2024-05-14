@@ -93,8 +93,8 @@ dependencies {
     implementation "io.insert-koin:koin-android-compat:3.2.2"
 
     //Room https://developer.android.com/jetpack/androidx/releases/room?gclid=Cj0KCQiA9OiPBhCOARIsAI0y71DLCrtf1ppaLy7_r2BCusnaBN0y-P5rytDP2Y9hXUSnKkb01SGOFfgaAgT_EALw_wcB&gclsrc=aw.ds
-    implementation "androidx.room:room-runtime:2.3.0"
-    kapt "androidx.room:room-compiler:2.3.0"
+    implementation "androidx.room:room-runtime:2.5.0"
+    kapt "androidx.room:room-compiler:2.5.0"
 
     //Retrofit https://square.github.io/retrofit/
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
