@@ -1,5 +1,6 @@
 package com.shang.jetpackmovie.ui
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -25,6 +26,7 @@ class MovieRefreshHeader @JvmOverloads constructor(
         refreshLottie = findViewById(R.id.refreshLottie)
     }
 
+    @SuppressLint("RestrictedApi")
     override fun onStateChanged(
         refreshLayout: RefreshLayout,
         oldState: RefreshState,
@@ -34,6 +36,7 @@ class MovieRefreshHeader @JvmOverloads constructor(
             RefreshState.PullDownToRefresh->{
                 refreshLottie.playAnimation()
             }
+            else -> {}
         }
     }
 
@@ -41,14 +44,17 @@ class MovieRefreshHeader @JvmOverloads constructor(
 
     override fun getSpinnerStyle(): SpinnerStyle = SpinnerStyle.Translate
 
+    @SuppressLint("RestrictedApi")
     override fun setPrimaryColors(vararg colors: Int) {
 
     }
 
+    @SuppressLint("RestrictedApi")
     override fun onInitialized(kernel: RefreshKernel, height: Int, maxDragHeight: Int) {
 
     }
 
+    @SuppressLint("RestrictedApi")
     override fun onMoving(
         isDragging: Boolean,
         percent: Float,
@@ -59,18 +65,22 @@ class MovieRefreshHeader @JvmOverloads constructor(
 
     }
 
+    @SuppressLint("RestrictedApi")
     override fun onReleased(refreshLayout: RefreshLayout, height: Int, maxDragHeight: Int) {
     }
 
+    @SuppressLint("RestrictedApi")
     override fun onStartAnimator(refreshLayout: RefreshLayout, height: Int, maxDragHeight: Int) {
 
     }
 
+    @SuppressLint("RestrictedApi")
     override fun onFinish(refreshLayout: RefreshLayout, success: Boolean): Int {
         refreshLottie.cancelAnimation()
         return 0
     }
 
+    @SuppressLint("RestrictedApi")
     override fun onHorizontalDrag(percentX: Float, offsetX: Int, offsetMax: Int) {
 
     }

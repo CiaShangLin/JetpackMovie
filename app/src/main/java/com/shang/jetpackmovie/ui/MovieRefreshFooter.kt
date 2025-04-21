@@ -1,5 +1,6 @@
 package com.shang.jetpackmovie.ui
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -25,6 +26,7 @@ class MovieRefreshFooter @JvmOverloads constructor(
         refreshLottie = findViewById(R.id.refreshLottie)
     }
 
+    @SuppressLint("RestrictedApi")
     override fun onStateChanged(
         refreshLayout: RefreshLayout,
         oldState: RefreshState,
@@ -34,6 +36,7 @@ class MovieRefreshFooter @JvmOverloads constructor(
             RefreshState.PullUpToLoad->{
                 refreshLottie.playAnimation()
             }
+            else -> {}
         }
     }
 
