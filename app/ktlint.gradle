@@ -7,7 +7,6 @@
  * - 整合到 build 流程，確保程式碼品質一致性
  * - 產生多種格式的檢查報告
  */
-
 ktlint {
     version =  "0.49.1"
     debug = true
@@ -27,7 +26,7 @@ ktlint {
 
     reporters {
         reporter "plain"
-        reporter "checkstyle"  // 新增：Checkstyle 格式報告
+        reporter "checkstyle"
         // HTML 報告會透過自定義 task 產出
     }
 
@@ -36,29 +35,21 @@ ktlint {
     }
 }
 
-// 整合到檢查流程
-check.dependsOn ktlintCheck
-
-// 自定義 tasks
-task ktlintCheckAll {
-    group = 'verification'
-    description = 'Run ktlint check on all source sets'
-    dependsOn ktlintCheck
-}
-
-task ktlintFormatAll {
-    group = 'formatting'
-    description = 'Run ktlint format on all source sets'
-    dependsOn ktlintFormat
-}
 
 // preBuild 時自動觸發 ktlint 檢查：先格式化再檢查 (使用 afterEvaluate 確保任務已完全創建)
 afterEvaluate {
-    println "afterEvaluate called for preBuild task setup." // 增加一個印出，幫助除錯
+    println "ktlint afterEvaluate preBuild"
+
+    // 確保任務存在
+    tasks.named('ktlintCheck') {
+        mustRunAfter 'ktlintFormat'
+    }
+
     tasks.named('preBuild') {
-        dependsOn ktlintFormat // 先執行格式化
-        dependsOn ktlintCheck  // 後執行檢查
-        println "ktlintFormat and ktlintCheck have been set as dependencies of preBuild."
+        println "自動化排版 preBuild ktlintFormat"
+        dependsOn 'ktlintFormat'
+        println "自動化檢查 preBuild ktlintCheck"
+        dependsOn 'ktlintCheck'
     }
 }
 
@@ -67,7 +58,7 @@ task ktlintHtmlReport {
     group = 'reporting'
     description = 'Generate ktlint HTML report'
     doLast {
-        // 確保報告目錄存在
+        // 確保報告目錄存在 ../app/build/reports/ktlint/report.html
         def reportDir = file("${project.buildDir}/reports/ktlint")
         if (!reportDir.exists()) {
             reportDir.mkdirs()
