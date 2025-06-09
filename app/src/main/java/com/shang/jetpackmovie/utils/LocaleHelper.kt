@@ -4,8 +4,7 @@ import android.content.Context
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Build
-import java.util.*
-
+import java.util.Locale
 
 class LocaleHelper {
     companion object {
@@ -16,7 +15,7 @@ class LocaleHelper {
          */
         fun update(context: Context, language: String) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                updateResources(context, language);
+                updateResources(context, language)
             }
             updateResourcesLegacy(context, language)
         }
@@ -44,6 +43,5 @@ class LocaleHelper {
             resources.updateConfiguration(configuration, resources.displayMetrics)
             return context
         }
-
     }
 }

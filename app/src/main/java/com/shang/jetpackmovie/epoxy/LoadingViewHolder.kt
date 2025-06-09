@@ -2,7 +2,6 @@ package com.shang.jetpackmovie.epoxy
 
 import android.view.View
 import com.airbnb.epoxy.EpoxyHolder
-import com.airbnb.epoxy.EpoxyViewHolder
 import com.airbnb.lottie.LottieAnimationView
 import com.shang.jetpackmovie.R
 

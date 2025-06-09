@@ -3,7 +3,7 @@ package com.shang.jetpackmovie.bean
 import java.io.Serializable
 
 data class MovieGenreBean(
-    val genres: List<Genre>
+    val genres: List<Genre>,
 ) {
     /**
      * 電影類型
@@ -12,6 +12,6 @@ data class MovieGenreBean(
      */
     data class Genre(
         val id: Int,
-        val name: String
-    ):Serializable
+        val name: String,
+    ) : Serializable
 }

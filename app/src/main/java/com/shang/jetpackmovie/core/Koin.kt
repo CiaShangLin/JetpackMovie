@@ -54,7 +54,7 @@ val roomModule = module {
 
 val networkModule = module {
 
-    //https://api.themoviedb.org/3/movie/550?api_key=90b44d4486f4ba2b48dbc22e2099b38b
+    // https://api.themoviedb.org/3/movie/550?api_key=90b44d4486f4ba2b48dbc22e2099b38b
     single {
         Retrofit.Builder()
             .baseUrl("https://api.themoviedb.org/3/")
@@ -105,7 +105,6 @@ val settingViewModel = module {
     }
 }
 
-
 val splashViewModelModule = module {
     viewModel {
         SplashViewModel(this.androidApplication(), get())
@@ -126,8 +125,8 @@ val genresViewModule = module {
 }
 
 val detailViewModel = module {
-    viewModel {parameters ->
-        DetailViewModel(parameters.get(),get())
+    viewModel { parameters ->
+        DetailViewModel(parameters.get(), get())
     }
 
     single {

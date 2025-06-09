@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.shang.jetpackmovie.R
 import com.shang.jetpackmovie.utils.dp2px
 
-class SettingDecoration(context:Context) : RecyclerView.ItemDecoration() {
+class SettingDecoration(context: Context) : RecyclerView.ItemDecoration() {
 
     private val linePaint by lazy {
         Paint().apply {
@@ -23,7 +23,7 @@ class SettingDecoration(context:Context) : RecyclerView.ItemDecoration() {
         outRect: Rect,
         view: View,
         parent: RecyclerView,
-        state: RecyclerView.State
+        state: RecyclerView.State,
     ) {
         super.getItemOffsets(outRect, view, parent, state)
 
@@ -46,9 +46,8 @@ class SettingDecoration(context:Context) : RecyclerView.ItemDecoration() {
                 val right = view.right.toFloat()
                 val bottom = view.bottom.toFloat()
                 val lineHeight = 1.dp2px(parent.context)
-                c.drawLine(left, bottom, right, bottom + lineHeight,linePaint)
+                c.drawLine(left, bottom, right, bottom + lineHeight, linePaint)
             }
         }
-
     }
 }

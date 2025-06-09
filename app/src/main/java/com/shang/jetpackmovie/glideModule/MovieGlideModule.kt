@@ -12,7 +12,8 @@ class MovieGlideModule : AppGlideModule() {
     override fun registerComponents(context: Context, glide: Glide, registry: Registry) {
         registry.prepend(
             String::class.java,
-            ByteBuffer::class.java, MovieModelLoaderFactory()
+            ByteBuffer::class.java,
+            MovieModelLoaderFactory(),
         )
     }
 }

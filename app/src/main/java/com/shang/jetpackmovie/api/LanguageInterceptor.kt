@@ -1,6 +1,5 @@
 package com.shang.jetpackmovie.api
 
-import com.shang.jetpackmovie.globalData.UserSetting
 import okhttp3.Interceptor
 import okhttp3.Response
 import java.util.*

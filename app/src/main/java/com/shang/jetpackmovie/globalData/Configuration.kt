@@ -1,10 +1,8 @@
 package com.shang.jetpackmovie.globalData
 
-
 import com.google.gson.Gson
-import com.shang.jetpackmovie.utils.SharedPreUtils
 import com.shang.jetpackmovie.bean.ConfigurationBean
-
+import com.shang.jetpackmovie.utils.SharedPreUtils
 
 object Configuration {
 

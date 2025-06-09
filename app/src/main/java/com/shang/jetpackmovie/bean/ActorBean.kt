@@ -3,7 +3,7 @@ package com.shang.jetpackmovie.bean
 data class ActorBean(
     val cast: List<Cast>,
     val crew: List<Crew>,
-    val id: Int
+    val id: Int,
 )
 
 data class Cast(
@@ -18,7 +18,7 @@ data class Cast(
     val order: Int?,
     val original_name: String?,
     val popularity: Double?,
-    val profile_path: String?
+    val profile_path: String?,
 )
 
 data class Crew(
@@ -32,5 +32,5 @@ data class Crew(
     val name: String?,
     val original_name: String?,
     val popularity: Double?,
-    val profile_path: String?
+    val profile_path: String?,
 )

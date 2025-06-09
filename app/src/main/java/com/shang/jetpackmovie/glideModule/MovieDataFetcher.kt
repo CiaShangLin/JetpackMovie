@@ -1,6 +1,5 @@
 package com.shang.jetpackmovie.glideModule
 
-import android.util.Log
 import com.bumptech.glide.Priority
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.data.DataFetcher
@@ -18,15 +17,15 @@ class MovieDataFetcher(val model: String) : DataFetcher<ByteBuffer> {
 
     override fun loadData(priority: Priority, callback: DataFetcher.DataCallback<in ByteBuffer>) {
         val base_url = Configuration.getConfiguration()?.images?.base_url
-        //組成規則BaseUrl+Size+ImageUrl
-        val url = "${base_url}original${model}"
+        // 組成規則BaseUrl+Size+ImageUrl
+        val url = "${base_url}original$model"
         mCall = ApiService.movieApi.getPicture(url)
         mCall?.enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 val bytes = response.body()?.bytes()
-                if(bytes != null){
+                if (bytes != null) {
                     callback.onDataReady(ByteBuffer.wrap(bytes))
-                }else{
+                } else {
                     cancel()
                 }
             }
@@ -35,7 +34,6 @@ class MovieDataFetcher(val model: String) : DataFetcher<ByteBuffer> {
                 cancel()
             }
         })
-
     }
 
     override fun cleanup() {

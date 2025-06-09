@@ -1,8 +1,6 @@
 package com.shang.jetpackmovie.fragment.genres
 
-import android.util.Log
 import androidx.lifecycle.*
-import com.google.gson.Gson
 import com.shang.jetpackmovie.api.UiState
 import com.shang.jetpackmovie.bean.IBaseMovie
 import com.shang.jetpackmovie.bean.MovieGenreBean
@@ -13,7 +11,7 @@ import kotlinx.coroutines.launch
 
 class GenreViewModel(
     private val genre: MovieGenreBean.Genre?,
-    private val genreRepository: GenreRepository
+    private val genreRepository: GenreRepository,
 ) : ViewModel(), BaseMovieModel.MovieFavorListener {
 
     private var _path = 1
@@ -38,7 +36,7 @@ class GenreViewModel(
     }
 
     fun loadMore() {
-        if(_genreLiveData.value is UiState.Loading){
+        if (_genreLiveData.value is UiState.Loading) {
             return
         }
         _path++

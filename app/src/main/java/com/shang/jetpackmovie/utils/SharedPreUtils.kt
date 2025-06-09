@@ -15,16 +15,21 @@ class SharedPreUtils {
         }
     }
 
-
-    fun setValue(key: String, @NonNull value: Any?) {
+    fun setValue(
+        key: String,
+        @NonNull value: Any?,
+    ) {
         val preferences =
             JetpackMovieApplication.context?.getSharedPreferences(Planet_File, Context.MODE_PRIVATE)
         val editor = preferences?.edit()
         commit(editor, key, value)
     }
 
-    //取值 defValue不能傳null 不然一定回傳null給你
-    fun <T> getValue(key: String, @NonNull defValue: T): T {
+    // 取值 defValue不能傳null 不然一定回傳null給你
+    fun <T> getValue(
+        key: String,
+        @NonNull defValue: T,
+    ): T {
         val preferences = JetpackMovieApplication.context?.getSharedPreferences(Planet_File, Context.MODE_PRIVATE)
 
         return when (defValue) {
@@ -40,7 +45,7 @@ class SharedPreUtils {
         }
     }
 
-    //儲存 可以多寫一個apply
+    // 儲存 可以多寫一個apply
     private fun commit(editor: SharedPreferences.Editor?, key: String, value: Any?) {
         if (editor == null) {
             return

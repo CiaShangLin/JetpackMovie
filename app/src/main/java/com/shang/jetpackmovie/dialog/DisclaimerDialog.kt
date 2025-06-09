@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import com.shang.jetpackmovie.R
 
-class DisclaimerDialog (context: Context) : Dialog(context, R.style.FullScreenDialog) {
+class DisclaimerDialog(context: Context) : Dialog(context, R.style.FullScreenDialog) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dialog_disclaimer)

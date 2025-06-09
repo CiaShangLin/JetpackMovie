@@ -1,6 +1,5 @@
 package com.shang.jetpackmovie.glideModule
 
-import android.util.Log
 import androidx.annotation.Nullable
 import com.bumptech.glide.load.Options
 import com.bumptech.glide.load.model.ModelLoader

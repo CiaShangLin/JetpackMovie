@@ -29,7 +29,7 @@ class DetailApiImp(private val movieApi: MovieApi) : DetailApi {
  */
 class DetailRepository(
     private val movieApi: DetailApiImp,
-    private val movieFavorDao: MovieFavorDao
+    private val movieFavorDao: MovieFavorDao,
 ) {
 
     suspend fun getMovieDetail(id: Int) = movieApi.getMovieDetail(id)

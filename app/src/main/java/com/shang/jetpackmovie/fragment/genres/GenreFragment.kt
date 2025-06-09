@@ -30,7 +30,6 @@ class GenreFragment : Fragment(R.layout.fragment_genre) {
     private val mViewModel by viewModel<GenreViewModel> { parametersOf(mGenre) }
     private val mGenreController by lazy { GenreController(mViewModel) }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -53,7 +52,6 @@ class GenreFragment : Fragment(R.layout.fragment_genre) {
         mBinding.rvGenre.layoutManager = GridLayoutManager(requireContext(), 2)
         mBinding.rvGenre.addItemDecoration(MovieDecoration())
         mBinding.rvGenre.setControllerAndBuildModels(mGenreController)
-
 
         mBinding.smartRefresh.setOnRefreshListener {
             mGenreController.refresh()

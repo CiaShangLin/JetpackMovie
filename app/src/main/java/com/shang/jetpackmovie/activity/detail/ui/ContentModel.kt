@@ -2,7 +2,10 @@ package com.shang.jetpackmovie.activity.detail.ui
 
 import android.view.View
 import android.widget.TextView
-import com.airbnb.epoxy.*
+import com.airbnb.epoxy.EpoxyAttribute
+import com.airbnb.epoxy.EpoxyHolder
+import com.airbnb.epoxy.EpoxyModelClass
+import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.shang.jetpackmovie.R
 import com.shang.jetpackmovie.bean.MovieDetailBean
 
@@ -16,7 +19,6 @@ abstract class ContentModel : EpoxyModelWithHolder<ContentModel.ContentViewHolde
         super.bind(holder)
         holder.tvContent.text = data.overview
     }
-
 
     class ContentViewHolder : EpoxyHolder() {
         lateinit var tvContent: TextView

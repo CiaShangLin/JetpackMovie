@@ -4,7 +4,10 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.airbnb.epoxy.*
+import com.airbnb.epoxy.EpoxyAttribute
+import com.airbnb.epoxy.EpoxyHolder
+import com.airbnb.epoxy.EpoxyModelClass
+import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.bumptech.glide.Glide
 import com.shang.jetpackmovie.R
 import com.shang.jetpackmovie.bean.Cast
@@ -25,7 +28,6 @@ abstract class ActorModel : EpoxyModelWithHolder<ActorModel.ActorViewHolder>() {
 
         holder.tvName.text = data.name
         holder.tvCharacter.text = data.character
-
     }
 
     class ActorViewHolder : EpoxyHolder() {

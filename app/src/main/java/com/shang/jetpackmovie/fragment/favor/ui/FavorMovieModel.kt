@@ -17,5 +17,5 @@ abstract class FavorMovieModel : BaseMovieModel<FavorMovieModel.FavorMovieViewHo
 
     override fun getViewType(): Int = MovieType.FAVOR.ordinal
 
-    class FavorMovieViewHolder : BaseMovieViewHolder(){}
+    class FavorMovieViewHolder : BaseMovieViewHolder()
 }

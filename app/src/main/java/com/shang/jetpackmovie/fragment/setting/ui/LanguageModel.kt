@@ -9,7 +9,7 @@ import com.shang.jetpackmovie.R
 import com.shang.jetpackmovie.dialog.LanguageDialog
 
 @EpoxyModelClass(layout = R.layout.epoxy_setting_language)
-abstract class LanguageModel:EpoxyModelWithHolder<LanguageModel.LanguageViewHolder>() {
+abstract class LanguageModel : EpoxyModelWithHolder<LanguageModel.LanguageViewHolder>() {
 
     override fun bind(holder: LanguageViewHolder) {
         super.bind(holder)

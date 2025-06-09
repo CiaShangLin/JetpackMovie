@@ -4,15 +4,11 @@ import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.ViewGroup
 import android.widget.RadioGroup
-import androidx.appcompat.app.AppCompatActivity
 import com.shang.jetpackmovie.R
-import com.shang.jetpackmovie.activity.main.MainActivity
 import com.shang.jetpackmovie.activity.splash.SplashActivity
 import com.shang.jetpackmovie.globalData.UserSetting
-import com.shang.jetpackmovie.utils.LocaleHelper
 import java.util.*
 
 /**
@@ -43,7 +39,6 @@ class LanguageDialog(context: Context) : Dialog(context, R.style.FullScreenDialo
             }
         }
 
-
         radioGroup.setOnCheckedChangeListener { group, checkedId ->
             val locale = when (checkedId) {
                 R.id.rbChinese -> Locale.CHINESE
@@ -53,7 +48,7 @@ class LanguageDialog(context: Context) : Dialog(context, R.style.FullScreenDialo
             UserSetting.language = locale.language
             dismiss()
 
-            val intent = Intent(context,SplashActivity::class.java)
+            val intent = Intent(context, SplashActivity::class.java)
             context.startActivity(intent)
         }
     }

@@ -12,7 +12,7 @@ data class MovieListBean(
     val page: Int,
     val results: List<Result>,
     val total_pages: Int,
-    val total_results: Int
+    val total_results: Int,
 ) {
 
     /**
@@ -45,18 +45,18 @@ data class MovieListBean(
         val title: String?,
         val video: Boolean?,
         val vote_average: Double?,
-        val vote_count: Int?
+        val vote_count: Int?,
     ) : IBaseMovie {
 
-        override fun getMovieID(): Int = id?:-1
+        override fun getMovieID(): Int = id ?: -1
 
-        override fun getMovieTitle(): String = title?:""
+        override fun getMovieTitle(): String = title ?: ""
 
-        override fun getPosterPath(): String = poster_path?:""
+        override fun getPosterPath(): String = poster_path ?: ""
 
-        override fun getVoteAverage(): Double = vote_average?:0.0
+        override fun getVoteAverage(): Double = vote_average ?: 0.0
 
-        override fun getReleaseDate(): String = release_date?:""
+        override fun getReleaseDate(): String = release_date ?: ""
 
         /**
          * 當某個欄位是null時hashCode會丟出NEP導致Epoxy在綁定data時發生錯誤
@@ -65,6 +65,6 @@ data class MovieListBean(
          * 2.所有欄位補上nullable
          * 3.hashCode直接回傳id
          */
-        //override fun hashCode(): Int = id
+        // override fun hashCode(): Int = id
     }
 }

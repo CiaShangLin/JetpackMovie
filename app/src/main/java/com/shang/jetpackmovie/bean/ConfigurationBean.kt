@@ -8,7 +8,7 @@ package com.shang.jetpackmovie.bean
  */
 data class ConfigurationBean(
     val change_keys: List<String>,
-    val images: Images
+    val images: Images,
 ) {
 
     /**
@@ -23,6 +23,6 @@ data class ConfigurationBean(
         val poster_sizes: List<String>,
         val profile_sizes: List<String>,
         val secure_base_url: String,
-        val still_sizes: List<String>
+        val still_sizes: List<String>,
     )
 }

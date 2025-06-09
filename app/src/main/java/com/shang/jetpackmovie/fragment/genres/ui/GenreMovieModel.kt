@@ -16,5 +16,5 @@ abstract class GenreMovieModel : BaseMovieModel<GenreMovieModel.GenreMovieViewHo
 
     override fun getViewType(): Int = MovieType.GENRE.ordinal
 
-    class GenreMovieViewHolder : BaseMovieViewHolder(){}
+    class GenreMovieViewHolder : BaseMovieViewHolder()
 }

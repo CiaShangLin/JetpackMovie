@@ -21,11 +21,7 @@ abstract class GuessLikeModel : BaseMovieModel<GuessLikeModel.GuessLikeViewHolde
 
     override fun bind(holder: GuessLikeViewHolder) {
         super.bind(holder)
-
     }
 
-    class GuessLikeViewHolder : BaseMovieViewHolder() {
-
-    }
-
+    class GuessLikeViewHolder : BaseMovieViewHolder()
 }

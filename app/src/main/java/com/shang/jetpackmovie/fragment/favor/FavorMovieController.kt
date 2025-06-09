@@ -5,11 +5,11 @@ import com.shang.jetpackmovie.epoxy.BaseMovieModel
 import com.shang.jetpackmovie.fragment.favor.ui.FavorMovieModel_
 import com.shang.jetpackmovie.room.entity.MovieFavorEntity
 
-class FavorMovieController(private val movieFavorListener: BaseMovieModel.MovieFavorListener): EpoxyController() {
+class FavorMovieController(private val movieFavorListener: BaseMovieModel.MovieFavorListener) : EpoxyController() {
 
-    private val mData  = mutableListOf<MovieFavorEntity>()
+    private val mData = mutableListOf<MovieFavorEntity>()
 
-    fun setData(data:List<MovieFavorEntity>){
+    fun setData(data: List<MovieFavorEntity>) {
         mData.clear()
         mData.addAll(data)
         requestModelBuild()

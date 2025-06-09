@@ -14,25 +14,32 @@ interface MovieApi {
     suspend fun getMovieGenres(): MovieGenreBean
 
     @GET("movie/{id}}")
-    suspend fun getMovieDetail(@Path("id") id: Int): MovieDetailBean
+    suspend fun getMovieDetail(
+        @Path("id") id: Int,
+    ): MovieDetailBean
 
     @GET("movie/{id}/credits")
-    suspend fun getMovieActor(@Path("id") id: Int): ActorBean
+    suspend fun getMovieActor(
+        @Path("id") id: Int,
+    ): ActorBean
 
 //    similar
     @GET("movie/{id}/recommendations")
-    suspend fun getMovieRecommendations(@Path("id") id: Int): MovieListBean
+    suspend fun getMovieRecommendations(
+        @Path("id") id: Int,
+    ): MovieListBean
 
     @GET("discover/movie")
     suspend fun getMovieGenreDetail(
         @Query("with_genres") with_genres: String,
-        @Query("page") page: Int
+        @Query("page") page: Int,
     ): MovieListBean
-
 
     @GET("configuration")
     suspend fun getConfiguration(): ConfigurationBean
 
     @GET
-    fun getPicture(@Url url: String): Call<ResponseBody>
+    fun getPicture(
+        @Url url: String,
+    ): Call<ResponseBody>
 }

@@ -1,6 +1,5 @@
 package com.shang.jetpackmovie.ui
 
-
 import android.app.Activity
 import android.os.Handler
 import android.os.Looper
@@ -36,16 +35,16 @@ import kotlin.reflect.KProperty
 
 @JvmName("viewBindingActivity")
 inline fun <V : ViewBinding> ComponentActivity.viewBinding(
-        crossinline viewBinder: (View) -> V,
-        crossinline viewProvider: (ComponentActivity) -> View = ::findRootView
+    crossinline viewBinder: (View) -> V,
+    crossinline viewProvider: (ComponentActivity) -> View = ::findRootView,
 ): ViewBindingProperty<ComponentActivity, V> = ActivityViewBindingProperty { activity: ComponentActivity ->
     viewBinder(viewProvider(activity))
 }
 
 @JvmName("viewBindingActivity")
 inline fun <V : ViewBinding> ComponentActivity.viewBinding(
-        crossinline viewBinder: (View) -> V,
-        @IdRes viewBindingRootId: Int
+    crossinline viewBinder: (View) -> V,
+    @IdRes viewBindingRootId: Int,
 ): ViewBindingProperty<ComponentActivity, V> = ActivityViewBindingProperty { activity: ComponentActivity ->
     viewBinder(activity.requireViewByIdCompat(viewBindingRootId))
 }
@@ -57,8 +56,8 @@ inline fun <V : ViewBinding> ComponentActivity.viewBinding(
 @Suppress("UNCHECKED_CAST")
 @JvmName("viewBindingFragment")
 inline fun <F : Fragment, V : ViewBinding> Fragment.viewBinding(
-        crossinline viewBinder: (View) -> V,
-        crossinline viewProvider: (F) -> View = Fragment::requireView
+    crossinline viewBinder: (View) -> V,
+    crossinline viewProvider: (F) -> View = Fragment::requireView,
 ): ViewBindingProperty<F, V> = when (this) {
     is DialogFragment -> DialogFragmentViewBindingProperty { fragment: F ->
         viewBinder(viewProvider(fragment))
@@ -71,8 +70,8 @@ inline fun <F : Fragment, V : ViewBinding> Fragment.viewBinding(
 @Suppress("UNCHECKED_CAST")
 @JvmName("viewBindingFragment")
 inline fun <F : Fragment, V : ViewBinding> Fragment.viewBinding(
-        crossinline viewBinder: (View) -> V,
-        @IdRes viewBindingRootId: Int
+    crossinline viewBinder: (View) -> V,
+    @IdRes viewBindingRootId: Int,
 ): ViewBindingProperty<F, V> = when (this) {
     is DialogFragment -> viewBinding(viewBinder) { fragment: DialogFragment ->
         fragment.getRootView(viewBindingRootId)
@@ -88,16 +87,16 @@ inline fun <F : Fragment, V : ViewBinding> Fragment.viewBinding(
 
 @JvmName("viewBindingViewGroup")
 inline fun <V : ViewBinding> ViewGroup.viewBinding(
-        crossinline viewBinder: (View) -> V,
-        crossinline viewProvider: (ViewGroup) -> View = { this }
+    crossinline viewBinder: (View) -> V,
+    crossinline viewProvider: (ViewGroup) -> View = { this },
 ): ViewBindingProperty<ViewGroup, V> = LazyViewBindingProperty { viewGroup: ViewGroup ->
     viewBinder(viewProvider(viewGroup))
 }
 
 @JvmName("viewBindingViewGroup")
 inline fun <V : ViewBinding> ViewGroup.viewBinding(
-        crossinline viewBinder: (View) -> V,
-        @IdRes viewBindingRootId: Int
+    crossinline viewBinder: (View) -> V,
+    @IdRes viewBindingRootId: Int,
 ): ViewBindingProperty<ViewGroup, V> = LazyViewBindingProperty { viewGroup: ViewGroup ->
     viewBinder(viewGroup.requireViewByIdCompat(viewBindingRootId))
 }
@@ -108,16 +107,16 @@ inline fun <V : ViewBinding> ViewGroup.viewBinding(
 
 @JvmName("viewBindingViewHolder")
 inline fun <V : ViewBinding> RecyclerView.ViewHolder.viewBinding(
-        crossinline viewBinder: (View) -> V,
-        crossinline viewProvider: (RecyclerView.ViewHolder) -> View = RecyclerView.ViewHolder::itemView
+    crossinline viewBinder: (View) -> V,
+    crossinline viewProvider: (RecyclerView.ViewHolder) -> View = RecyclerView.ViewHolder::itemView,
 ): ViewBindingProperty<RecyclerView.ViewHolder, V> = LazyViewBindingProperty { holder: RecyclerView.ViewHolder ->
     viewBinder(viewProvider(holder))
 }
 
 @JvmName("viewBindingViewHolder")
 inline fun <V : ViewBinding> RecyclerView.ViewHolder.viewBinding(
-        crossinline viewBinder: (View) -> V,
-        @IdRes viewBindingRootId: Int
+    crossinline viewBinder: (View) -> V,
+    @IdRes viewBindingRootId: Int,
 ): ViewBindingProperty<RecyclerView.ViewHolder, V> = LazyViewBindingProperty { holder: RecyclerView.ViewHolder ->
     viewBinder(holder.itemView.requireViewByIdCompat(viewBindingRootId))
 }
@@ -134,7 +133,7 @@ interface ViewBindingProperty<in R : Any, out V : ViewBinding> : ReadOnlyPropert
 }
 
 class LazyViewBindingProperty<in R : Any, out V : ViewBinding>(
-        private val viewBinder: (R) -> V
+    private val viewBinder: (R) -> V,
 ) : ViewBindingProperty<R, V> {
 
     private var viewBinding: V? = null
@@ -157,7 +156,7 @@ class LazyViewBindingProperty<in R : Any, out V : ViewBinding>(
 }
 
 abstract class LifecycleViewBindingProperty<in R : Any, out V : ViewBinding>(
-        private val viewBinder: (R) -> V
+    private val viewBinder: (R) -> V,
 ) : ViewBindingProperty<R, V> {
 
     private var viewBinding: V? = null
@@ -173,8 +172,9 @@ abstract class LifecycleViewBindingProperty<in R : Any, out V : ViewBinding>(
         val viewBinding = viewBinder(thisRef)
         if (lifecycle.currentState == Lifecycle.State.DESTROYED) {
             Log.w(
-                    TAG, "Access to viewBinding after Lifecycle is destroyed or hasn't created yet. " +
-                    "The instance of viewBinding will be not cached."
+                TAG,
+                "Access to viewBinding after Lifecycle is destroyed or hasn't created yet. " +
+                    "The instance of viewBinding will be not cached.",
             )
             // We can access to ViewBinding after Fragment.onDestroyView(), but don't save it to prevent memory leak
         } else {
@@ -190,7 +190,7 @@ abstract class LifecycleViewBindingProperty<in R : Any, out V : ViewBinding>(
     }
 
     private class ClearOnDestroyLifecycleObserver(
-            private val property: LifecycleViewBindingProperty<*, *>
+        private val property: LifecycleViewBindingProperty<*, *>,
     ) : LifecycleObserver {
 
         private companion object {
@@ -206,7 +206,7 @@ abstract class LifecycleViewBindingProperty<in R : Any, out V : ViewBinding>(
 }
 
 class FragmentViewBindingProperty<in F : Fragment, out V : ViewBinding>(
-        viewBinder: (F) -> V
+    viewBinder: (F) -> V,
 ) : LifecycleViewBindingProperty<F, V>(viewBinder) {
 
     override fun getLifecycleOwner(thisRef: F): LifecycleOwner {
@@ -219,7 +219,7 @@ class FragmentViewBindingProperty<in F : Fragment, out V : ViewBinding>(
 }
 
 class DialogFragmentViewBindingProperty<in F : DialogFragment, out V : ViewBinding>(
-        viewBinder: (F) -> V
+    viewBinder: (F) -> V,
 ) : LifecycleViewBindingProperty<F, V>(viewBinder) {
 
     override fun getLifecycleOwner(thisRef: F): LifecycleOwner {
@@ -241,7 +241,7 @@ class DialogFragmentViewBindingProperty<in F : DialogFragment, out V : ViewBindi
 
 @RestrictTo(RestrictTo.Scope.LIBRARY)
 class ActivityViewBindingProperty<in A : ComponentActivity, out V : ViewBinding>(
-        viewBinder: (A) -> V
+    viewBinder: (A) -> V,
 ) : LifecycleViewBindingProperty<A, V>(viewBinder) {
 
     override fun getLifecycleOwner(thisRef: A): LifecycleOwner {
@@ -249,11 +249,15 @@ class ActivityViewBindingProperty<in A : ComponentActivity, out V : ViewBinding>
     }
 }
 
-fun <V : View> View.requireViewByIdCompat(@IdRes id: Int): V {
+fun <V : View> View.requireViewByIdCompat(
+    @IdRes id: Int,
+): V {
     return ViewCompat.requireViewById(this, id)
 }
 
-fun <V : View> Activity.requireViewByIdCompat(@IdRes id: Int): V {
+fun <V : View> Activity.requireViewByIdCompat(
+    @IdRes id: Int,
+): V {
     return ActivityCompat.requireViewById(this, id)
 }
 
@@ -276,8 +280,12 @@ fun DialogFragment.getRootView(viewBindingRootId: Int): View {
     }
     val window = checkNotNull(dialog.window) { "Fragment's Dialog has no window" }
     return with(window.decorView) {
-        if (viewBindingRootId != 0) requireViewByIdCompat(
-                viewBindingRootId
-        ) else this
+        if (viewBindingRootId != 0) {
+            requireViewByIdCompat(
+                viewBindingRootId,
+            )
+        } else {
+            this
+        }
     }
 }

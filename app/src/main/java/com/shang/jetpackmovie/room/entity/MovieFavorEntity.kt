@@ -1,10 +1,8 @@
 package com.shang.jetpackmovie.room.entity
 
-import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.shang.jetpackmovie.bean.IBaseMovie
-import java.io.Serializable
 
 @Entity(tableName = "MovieFavorEntity")
 data class MovieFavorEntity(
@@ -13,7 +11,7 @@ data class MovieFavorEntity(
     val poster_path: String,
     val vote_average: Double,
     val release_date: String,
-    val timestamp: Int
+    val timestamp: Int,
 ) : IBaseMovie {
 
     companion object {
@@ -24,7 +22,7 @@ data class MovieFavorEntity(
                 data.getPosterPath(),
                 data.getVoteAverage(),
                 data.getReleaseDate(),
-                (System.currentTimeMillis()/1000).toInt()
+                (System.currentTimeMillis() / 1000).toInt(),
             )
         }
     }

@@ -26,7 +26,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     setViewPager(it.data.genres)
                 }
                 is UiState.Failure -> {
-                    //考慮彈出Dialog，然後跳回SplashActivity再來一次
+                    // 考慮彈出Dialog，然後跳回SplashActivity再來一次
                     Log.d("DEBUG", "Failure")
                 }
                 UiState.Loading -> {
@@ -35,7 +35,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             }
         })
     }
-
 
     private fun setViewPager(genres: List<MovieGenreBean.Genre>) {
         mBinding.viewPager.adapter = HomeViewPagerAdapter(this, genres)

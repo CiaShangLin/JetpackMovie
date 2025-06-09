@@ -21,5 +21,4 @@ object UserSetting {
         set(value) {
             SharedPreUtils.getInstance().setValue(LANGUAGE, value)
         }
-
 }

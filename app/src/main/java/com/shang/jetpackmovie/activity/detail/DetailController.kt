@@ -6,8 +6,8 @@ import com.airbnb.epoxy.EpoxyController
 import com.shang.jetpackmovie.activity.detail.ui.ActorModel_
 import com.shang.jetpackmovie.activity.detail.ui.ActorTitleModel_
 import com.shang.jetpackmovie.activity.detail.ui.ContentModel_
-import com.shang.jetpackmovie.activity.detail.ui.GuessLikeTitleModel_
 import com.shang.jetpackmovie.activity.detail.ui.GuessLikeModel_
+import com.shang.jetpackmovie.activity.detail.ui.GuessLikeTitleModel_
 import com.shang.jetpackmovie.bean.ActorBean
 import com.shang.jetpackmovie.bean.MovieDetailBean
 import com.shang.jetpackmovie.bean.MovieListBean
@@ -44,7 +44,6 @@ class DetailController(private val movieFavorListener: BaseMovieModel.MovieFavor
         requestModelBuild()
     }
 
-
     override fun buildModels() {
         mDetailBean?.let {
             contentModel
@@ -60,7 +59,7 @@ class DetailController(private val movieFavorListener: BaseMovieModel.MovieFavor
             actorModelList.add(
                 ActorModel_()
                     .id(it.id)
-                    .data(it)
+                    .data(it),
             )
         }
         CarouselModel_()
