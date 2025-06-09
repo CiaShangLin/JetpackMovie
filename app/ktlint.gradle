@@ -1,0 +1,89 @@
+/**
+ * ktlint 設定 - Kotlin 程式碼格式檢查與自動修正工具
+ *
+ * 主要功能：
+ * - 檢查 Kotlin 程式碼是否符合官方編碼規範
+ * - 自動修正格式問題（縮排、空格、換行等）
+ * - 整合到 build 流程，確保程式碼品質一致性
+ * - 產生多種格式的檢查報告
+ */
+
+ktlint {
+    version =  "0.49.1"
+    debug = true
+    verbose = true
+    android = true
+    outputToConsole = true
+    outputColorName = "RED"
+    ignoreFailures = false
+    enableExperimentalRules = true
+
+    filter {
+        exclude("**/generated/**")
+        exclude("**/build/**")
+        include("**/kotlin/**")
+        include("**/java/**")
+    }
+
+    reporters {
+        reporter "plain"
+        reporter "checkstyle"  // 新增：Checkstyle 格式報告
+        // HTML 報告會透過自定義 task 產出
+    }
+
+    kotlinScriptAdditionalPaths {
+        include fileTree("scripts/")
+    }
+}
+
+// 整合到檢查流程
+check.dependsOn ktlintCheck
+
+// 自定義 tasks
+task ktlintCheckAll {
+    group = 'verification'
+    description = 'Run ktlint check on all source sets'
+    dependsOn ktlintCheck
+}
+
+task ktlintFormatAll {
+    group = 'formatting'
+    description = 'Run ktlint format on all source sets'
+    dependsOn ktlintFormat
+}
+
+// preBuild 時自動觸發 ktlint 檢查：先格式化再檢查 (使用 afterEvaluate 確保任務已完全創建)
+afterEvaluate {
+    println "afterEvaluate called for preBuild task setup." // 增加一個印出，幫助除錯
+    tasks.named('preBuild') {
+        dependsOn ktlintFormat // 先執行格式化
+        dependsOn ktlintCheck  // 後執行檢查
+        println "ktlintFormat and ktlintCheck have been set as dependencies of preBuild."
+    }
+}
+
+// 產出 HTML 報告的手動觸發任務
+task ktlintHtmlReport {
+    group = 'reporting'
+    description = 'Generate ktlint HTML report'
+    doLast {
+        // 確保報告目錄存在
+        def reportDir = file("${project.buildDir}/reports/ktlint")
+        if (!reportDir.exists()) {
+            reportDir.mkdirs()
+        }
+
+        // 執行 ktlint 檢查並產出 HTML 報告
+        project.javaexec {
+            classpath = configurations.ktlint
+            main = "com.pinterest.ktlint.Main"
+            args = [
+                    "--reporter=html,output=${project.buildDir}/reports/ktlint/report.html",
+                    "--reporter=plain",
+                    "src/**/*.kt"
+            ]
+        }
+
+        println "HTML 報告已產出至: ${project.buildDir}/reports/ktlint/report.html"
+    }
+}
