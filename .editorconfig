@@ -1,12 +1,23 @@
-[*.{kt,kts}]                             # 適用於所有 Kotlin 檔案 (*.kt, *.kts)
+# 適用於所有 Kotlin 檔案 (*.kt, *.kts)
+[*.{kt,kts}]
 
-ktlint_standard = enabled                # 啟用 ktlint 的 standard 規則集
-ktlint_code_style = ktlint_official     # 使用官方建議的 ktlint 代碼風格（而非 Android Studio 預設風格）
+# 啟用 ktlint 的 standard 規則集（此行其實已隱含於 code_style，可選擇刪除）
+ktlint_standard = enabled
 
-indent_style = space                    # 使用空白字元作為縮排（而非 Tab）
-indent_size = 4                         # 每層縮排為 4 個空格
-tab_width = 4                           # 如果 Tab 被允許時，等同於 4 個空格
-continuation_indent_size = 8           # 若換行續寫時，使用 8 空格的額外縮排
+# 使用官方建議的 ktlint 代碼風格（而非 Android Studio 預設風格）
+ktlint_code_style = ktlint_official
 
-ktlint_standard_final-newline = disabled          # 禁用檔案末尾必須有空行的規則
-ktlint_standard_no-wildcard-imports = disabled    # 禁用禁止萬用字元匯入（`import xxx.*`）的規則
+# 使用空白字元作為縮排（而非 Tab）
+indent_style = space
+# 每層縮排為 4 個空格
+indent_size = 4
+# 如果 Tab 被允許時，等同於 4 個空格
+tab_width = 4
+
+# ⚠️ continuation_indent_size 已被 KtLint 廢棄，不建議再使用
+# continuation_indent_size = 8
+
+# 禁用檔案末尾必須有空行的規則
+ktlint_standard_final-newline = disabled
+# 禁用禁止萬用字元匯入（`import xxx.*`）的規則
+ktlint_standard_no-wildcard-imports = disabled
